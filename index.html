@@ -2,10 +2,15 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Hekmeh Hospital</title>
 <meta name="description" content="Design concept for a Hekmeh Hospital website by Fadel Hallal. Not the official site.">
 <meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hekmeh Hospital — website concept">
+<meta property="og:description" content="A bilingual, mobile-first website concept for Hekmeh Hospital, Nabatieh. Design by Fadel Hallal.">
+<meta property="og:url" content="https://fadelhallal.github.io/hekmeh-hospital/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230f766e'/%3E%3Cpath d='M16 8v16M8 16h16' stroke='white' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
 <meta name="theme-color" content="#0f766e">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,6 +58,7 @@ input,select,textarea{font:inherit;color:inherit}
 /* Buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding-inline:24px;border-radius:999px;font-weight:700;font-size:.98rem;transition:transform .15s,box-shadow .2s,background .2s;white-space:nowrap}
 .btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.4;cursor:not-allowed;box-shadow:none;transform:none}
 .btn-primary{background:var(--brand);color:#fff;box-shadow:0 8px 20px -8px color-mix(in srgb,var(--brand) 70%,transparent)}
 :root[data-theme="dark"] .btn-primary{color:#05201d}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-primary{color:#05201d}}
@@ -103,7 +109,7 @@ input,select,textarea{font:inherit;color:inherit}
 /* Mobile drawer */
 .drawer-nav{position:fixed;inset:0;z-index:80;visibility:hidden}
 .drawer-nav.open{visibility:visible}
-.scrim{position:absolute;inset:0;background:rgba(5,20,25,.45);opacity:0;transition:opacity .25s}
+.scrim{position:absolute;inset:0;background:rgba(5,20,25,.45);opacity:0;transition:opacity .25s;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .open>.scrim{opacity:1}
 .drawer-nav .panel{position:absolute;inset-block:0;inset-inline-end:0;width:min(360px,88vw);background:var(--surface);padding:20px;display:flex;flex-direction:column;gap:6px;transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);box-shadow:var(--shadow-lg)}
 [dir="rtl"] .drawer-nav .panel{transform:translateX(-100%)}
@@ -143,7 +149,9 @@ h1 em{font-style:normal;background:linear-gradient(90deg,var(--brand),var(--bran
 .f2{top:42%;inset-inline-end:-6%;animation-delay:-2s}
 .f3{bottom:2%;inset-inline-start:4%;animation-delay:-4s}
 @keyframes bob{50%{transform:translateY(-8px)}}
-@media (max-width:560px){.f1{inset-inline-start:0}.f2{inset-inline-end:0}}
+@media (max-width:560px){.f1{inset-inline-start:0}.f2{inset-inline-end:0}.hero-visual{max-width:340px}.float{padding:10px 12px;font-size:.8rem;gap:10px}.float .fi{width:34px;height:34px;border-radius:10px}.float .fi .ic{width:18px;height:18px}}
+.beat{stroke-dasharray:420;animation:draw 3.2s ease-in-out infinite}
+@keyframes draw{0%{stroke-dashoffset:420;opacity:.5}65%{stroke-dashoffset:0;opacity:.5}100%{stroke-dashoffset:0;opacity:0}}
 
 /* Quick actions */
 .quick{margin-top:24px;position:relative;z-index:2}
@@ -171,6 +179,21 @@ html[lang="ar"] h2{letter-spacing:0;line-height:1.3}
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px;flex-wrap:wrap}
 .sec-head p{color:var(--muted);max-width:560px;margin:0;font-size:1.05rem}
 .alt{background:var(--surface)}
+
+/* Emergency strip */
+.er-strip{display:flex;align-items:center;gap:20px;padding:26px 28px;border-radius:26px;background:linear-gradient(120deg,#b91c1c,#7f1d1d);color:#fff;flex-wrap:wrap;box-shadow:0 20px 40px -20px rgba(185,28,28,.6);position:relative;overflow:hidden}
+.er-strip::after{content:"";position:absolute;inset:-60% -10% auto auto;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.07);pointer-events:none}
+[dir="rtl"] .er-strip::after{inset:-60% auto auto -10%}
+.er-ic{width:58px;height:58px;border-radius:18px;background:rgba(255,255,255,.15);display:grid;place-items:center;flex:none}
+.er-ic .ic{width:30px;height:30px}
+.er-txt{flex:1 1 300px}
+.er-txt b{display:block;font-size:1.3rem;margin-bottom:2px}
+.er-txt span{opacity:.88}
+.er-actions{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
+.er-solid{background:#fff;color:#b91c1c}
+.er-ghost{background:rgba(255,255,255,.14);color:#fff}
+.er-ghost:hover{background:rgba(255,255,255,.22)}
+@media (max-width:560px){.er-strip{padding:22px}.er-actions,.er-actions .btn{width:100%}.er-ic{display:none}}
 
 /* Departments */
 .dep-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -231,7 +254,11 @@ html[lang="ar"] h2{letter-spacing:0;line-height:1.3}
 .days{display:flex;gap:5px;flex-wrap:wrap}
 .day{font-size:.74rem;font-weight:700;padding:4px 8px;border-radius:8px;background:var(--surface-2);color:var(--muted)}
 .day.on{background:var(--brand-soft);color:var(--brand)}
-.doc .btn{width:100%}
+.doc .btn{width:100%;margin-top:auto}
+.next{display:flex;align-items:center;gap:8px;font-size:.86rem;color:var(--muted);font-weight:600}
+.next b{color:var(--text)}
+.next .ic{width:18px;height:18px;color:var(--brand)}
+.doc-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .empty{grid-column:1/-1;text-align:center;padding:48px;color:var(--muted);border:1.5px dashed var(--line);border-radius:var(--r)}
 
 /* Insurance */
@@ -316,7 +343,7 @@ footer .about{opacity:.8;margin:16px 0 20px;max-width:340px}
 .f-bottom div{display:flex;gap:18px}
 
 /* Mobile bottom bar */
-.mbar{position:fixed;inset-inline:12px;bottom:12px;z-index:60;display:none;grid-template-columns:1fr 1.3fr 1fr;gap:8px;padding:8px;border-radius:22px;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow-lg);border:1px solid var(--line)}
+.mbar{position:fixed;inset-inline:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;display:none;grid-template-columns:1fr 1.3fr 1fr;gap:8px;padding:8px;border-radius:22px;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow-lg);border:1px solid var(--line)}
 .mbar a,.mbar button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:56px;border-radius:16px;font-size:.76rem;font-weight:700}
 .mbar .ic{width:22px;height:22px}
 .mbar .m-er{color:var(--er);background:var(--er-soft)}
@@ -327,14 +354,14 @@ footer .about{opacity:.8;margin:16px 0 20px;max-width:340px}
 @media (max-width:760px){.mbar{display:grid}body{padding-bottom:92px}}
 
 /* Modal */
-.modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:16px;visibility:hidden}
+.modal{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:16px;visibility:hidden}
 .modal.open{visibility:visible}
-.modal .box{position:relative;width:min(640px,100%);max-height:min(92vh,820px);background:var(--surface);border-radius:28px;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;opacity:0;transform:translateY(16px) scale(.98);transition:opacity .25s,transform .3s cubic-bezier(.2,.8,.2,1)}
+.modal .box{position:relative;width:min(640px,100%);min-width:0;max-height:min(92vh,820px);background:var(--surface);border-radius:28px;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;opacity:0;transform:translateY(16px) scale(.98);transition:opacity .25s,transform .3s cubic-bezier(.2,.8,.2,1)}
 .modal.open .box{opacity:1;transform:none}
-@media (max-width:600px){.modal{padding:0;place-items:end stretch}.modal .box{border-radius:28px 28px 0 0;max-height:94vh;transform:translateY(100%)}}
+@media (max-width:600px){.modal{padding:0;align-items:flex-end}.modal .box{width:100%;border-radius:28px 28px 0 0;max-height:94vh;transform:translateY(100%)}.m-head,.m-body{padding-inline:18px}.steps{padding-inline:18px}.m-foot{padding:14px 18px calc(18px + env(safe-area-inset-bottom))}}
 .m-head{padding:22px 24px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}
 .m-head h2{font-size:1.35rem;margin:0;letter-spacing:-.01em}
-.m-body{padding:20px 24px;overflow-y:auto;flex:1}
+.m-body{padding:20px 24px;overflow-y:auto;overflow-x:hidden;flex:1;min-width:0;overscroll-behavior:contain}
 .m-foot{padding:16px 24px 22px;display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line)}
 .m-foot .btn{flex:1}
 .m-foot .btn-ghost{flex:0 0 auto}
@@ -355,8 +382,9 @@ footer .about{opacity:.8;margin:16px 0 20px;max-width:340px}
 .opt small{display:block;color:var(--muted);font-weight:500;font-size:.8rem}
 .note{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:var(--er-soft);color:var(--er);font-size:.88rem;font-weight:600;margin-top:14px}
 .note .ic{width:20px;height:20px}
-.dates{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:thin;margin-bottom:16px}
-.date{flex:none;width:64px;padding:10px 0;border-radius:16px;border:1.5px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:2px;transition:all .15s}
+.dates{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:none;margin-bottom:16px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.dates::-webkit-scrollbar{display:none}
+.date{flex:none;width:64px;scroll-snap-align:start;padding:10px 0;border-radius:16px;border:1.5px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:2px;transition:all .15s}
 .date small{font-size:.72rem;color:var(--muted);font-weight:700;text-transform:uppercase}
 .date b{font-size:1.25rem}
 .date[aria-checked="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
@@ -408,12 +436,14 @@ footer .about{opacity:.8;margin:16px 0 20px;max-width:340px}
 body.lock{overflow:hidden}
 .concept{background:#fef3c7;color:#78350f;font-size:.84rem;font-weight:600;text-align:center;padding:8px 16px;line-height:1.45}
 .concept a{text-decoration:underline;white-space:nowrap}
+.c-short{display:none}
+@media (max-width:700px){.c-long{display:none}.c-short{display:inline}.concept{font-size:.78rem;padding:7px 12px}}
 .sample{font-size:.7rem;font-weight:700;color:var(--muted);background:var(--surface-2);padding:3px 8px;border-radius:999px;align-self:flex-start}
 .preview-note{display:flex;gap:10px;align-items:flex-start;text-align:start;padding:14px;border-radius:14px;background:#fef3c7;color:#78350f;font-weight:600;font-size:.9rem;margin-top:14px}
 </style>
 </head>
 <body>
-<div class="concept" role="note"><span data-i18n="concept">Design concept by Fadel Hallal — not the official Hekmeh Hospital website. Forms on this page don’t send anything; to book, call</span> <a href="tel:+9617761776" dir="ltr">+961 7 761776</a></div>
+<div class="concept" role="note"><span class="c-short" data-i18n="concept.s">Design concept by Fadel Hallal · not the official site · Book by phone:</span><span class="c-long" data-i18n="concept">Design concept by Fadel Hallal — not the official Hekmeh Hospital website. Forms on this page don’t send anything; to book, call</span> <a href="tel:+9617761776" dir="ltr">+961 7 761776</a></div>
 <a href="#main" class="skip" data-i18n="skip">Skip to content</a>
 
 <!-- Top bar -->
@@ -528,7 +558,7 @@ body.lock{overflow:hidden}
             <circle cx="360" cy="325" r="30" fill="#5eead4" opacity=".45"/><rect x="358" y="330" width="4" height="30" fill="#fff" opacity=".4"/>
             <rect x="0" y="358" width="400" height="42" fill="#0b2540" opacity=".35"/>
             <!-- heartbeat -->
-            <path d="M20 60h70l12-22 16 44 14-30 10 8h80" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".35"/>
+            <path class="beat" d="M20 60h70l12-22 16 44 14-30 10 8h80" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".35"/>
           </svg>
         </div>
         <div class="float f1"><span class="fi" style="background:var(--er-soft);color:var(--er)"><svg class="ic" viewBox="0 0 24 24"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg></span><span><b data-i18n="fc.er">Emergency</b><small data-i18n="fc.open">Open 24/7</small></span></div>
@@ -561,6 +591,18 @@ body.lock{overflow:hidden}
           <svg class="ic arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Emergency strip -->
+<div class="container" style="margin-top:64px">
+  <div class="er-strip reveal">
+    <span class="er-ic"><svg class="ic" viewBox="0 0 24 24"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg></span>
+    <div class="er-txt"><b data-i18n="ers.t">Medical emergency?</b><span data-i18n="ers.d">Come straight to our ER — no appointment needed, open 24/7. For an ambulance, call the Lebanese Red Cross on 140.</span></div>
+    <div class="er-actions">
+      <a class="btn er-solid" href="tel:+9617765362"><svg class="ic" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span data-i18n="hero.call">Call emergency</span></a>
+      <a class="btn er-ghost" href="tel:140"><span data-i18n="ers.rc">Red Cross · 140</span></a>
     </div>
   </div>
 </div>
@@ -825,6 +867,9 @@ const ICON = {
   close:'<path d="M6 6l12 12M18 6L6 18"/>',
   plus:'<path d="M12 5v14M5 12h14"/>',
   any:'<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20a6 6 0 0 1 12 0M14 20a4.5 4.5 0 0 1 7.5-3.4"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  moon:'<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',
   info:'<circle cx="12" cy="12" r="9"/><path d="M12 8v.01M11 12h1v5h1"/>'
 };
 const ic = (k, cls='ic') => `<svg class="${cls}" viewBox="0 0 24 24">${ICON[k]}</svg>`;
@@ -884,12 +929,12 @@ const FAQS = {
 
 /* ---------- i18n ---------- */
 const AR = {
-  'skip':'انتقل إلى المحتوى','concept':'تصميم تجريبي من إعداد فضل حلال — ليس الموقع الرسمي لمستشفى الحكمة. النماذج في هذه الصفحة لا تُرسل أي بيانات؛ للحجز اتصل على','tb.er':'الطوارئ ٢٤/٧','tb.loc':'خلة الهوا، النبطية',
+  'skip':'انتقل إلى المحتوى','concept.s':'تصميم تجريبي من إعداد فضل حلال · ليس الموقع الرسمي · للحجز اتصل:','concept':'تصميم تجريبي من إعداد فضل حلال — ليس الموقع الرسمي لمستشفى الحكمة. النماذج في هذه الصفحة لا تُرسل أي بيانات؛ للحجز اتصل على','tb.er':'الطوارئ ٢٤/٧','tb.loc':'خلة الهوا، النبطية',
   'brand':'مستشفى الحكمة','brand.tag':'النبطية · منذ ١٩٨٠',
   'nav.dep':'الأقسام','nav.doc':'الأطباء','nav.pat':'المرضى والزوار','nav.ins':'الجهات الضامنة','nav.contact':'اتصل بنا','cta.book':'احجز موعداً',
   'hero.badge':'قسم الطوارئ مفتوح الآن','hero.h':'نرعى أهل الجنوب <em>منذ أكثر من ٤٥ عاماً</em>',
   'hero.p':'مستشفى عام مرخّص في النبطية، يقدّم طوارئ على مدار الساعة، وتشخيصاً حديثاً، وأطباء اختصاص موثوقين — ومتعاقد مع جميع الجهات الضامنة الرسمية.',
-  'hero.call':'اتصل بالطوارئ','hero.trust1':'مرخّص من وزارة الصحة العامة','hero.trust2':'نقبل جميع الجهات الضامنة',
+  'hero.call':'اتصل بالطوارئ','ers.t':'حالة طارئة؟','ers.d':'توجّه مباشرة إلى قسم الطوارئ — بلا موعد، ومفتوح ٢٤/٧. لطلب سيارة إسعاف اتصل بالصليب الأحمر اللبناني على 140.','ers.rc':'الصليب الأحمر · 140','hero.trust1':'مرخّص من وزارة الصحة العامة','hero.trust2':'نقبل جميع الجهات الضامنة',
   'fc.er':'الطوارئ','fc.open':'مفتوح ٢٤/٧','fc.since':'في خدمتكم منذ','fc.book':'احجز أونلاين','fc.fast':'بأقل من دقيقة',
   'qa.book.t':'احجز موعداً','qa.book.d':'اختر العيادة والطبيب والوقت','qa.doc.t':'ابحث عن طبيب','qa.doc.d':'بالاسم أو الاختصاص',
   'qa.lab.t':'نتائج المختبر','qa.lab.d':'اطلب نتائجك بأمان','qa.dir.t':'الاتجاهات','qa.dir.d':'خلة الهوا، النبطية',
@@ -928,13 +973,13 @@ const T = {
       erNow:'Come directly — no appointment needed',call:'Call emergency',q1:'Which department do you need?',q2:'Choose your doctor',any:'First available doctor',anyD:'Earliest open slot',
       q3:'Pick a date and time',q4:'Tell us about you',guar:'Guarantor',notes:'Reason for visit (optional)',confirm:'Confirm booking',
       erNote:'For an emergency, don’t book — come straight to the ER or call +961 7 765362.',okH:'Preview complete',okP:'This is a design preview, so no appointment was made. To book this slot, please call +961 7 761776.',
-      ref:'Reference',sample:'Sample profile',callBook:'Call to book',done:'Done',sum:{dep:'Department',doc:'Doctor',when:'When'},noTime:'Please choose a time.',name:'Full name',phone:'Phone number',open:'Open 24/7',
+      ref:'Reference',sample:'Sample profile',callBook:'Call to book',next:'Next available',done:'Done',sum:{dep:'Department',doc:'Doctor',when:'When'},noTime:'Please choose a time.',name:'Full name',phone:'Phone number',open:'Open 24/7',
       days:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],locale:'en-GB'},
   ar:{more:'اعرف المزيد',all:'الكل',book:'احجز',empty:'لا يوجد أطباء يطابقون بحثك.',svc:'ما نقدّمه',docs:'أطباؤنا',bookDep:'احجز في هذا القسم',
       erNow:'تعال مباشرة — لا حاجة لموعد',call:'اتصل بالطوارئ',q1:'أي قسم تحتاج؟',q2:'اختر طبيبك',any:'أول طبيب متاح',anyD:'أقرب موعد متاح',
       q3:'اختر التاريخ والوقت',q4:'أخبرنا عنك',guar:'الجهة الضامنة',notes:'سبب الزيارة (اختياري)',confirm:'تأكيد الحجز',
       erNote:'في الحالات الطارئة لا تحجز — توجّه مباشرة إلى الطوارئ أو اتصل على 765362 7 961+.',okH:'انتهت المعاينة',okP:'هذه نسخة تجريبية من التصميم، لذلك لم يتم حجز أي موعد. لحجز هذا الموعد يرجى الاتصال على 761776 7 961+.',
-      ref:'رقم المرجع',sample:'ملف تجريبي',callBook:'اتصل للحجز',done:'تم',sum:{dep:'القسم',doc:'الطبيب',when:'الموعد'},noTime:'يرجى اختيار الوقت.',name:'الاسم الكامل',phone:'رقم الهاتف',open:'مفتوح ٢٤/٧',
+      ref:'رقم المرجع',sample:'ملف تجريبي',callBook:'اتصل للحجز',next:'أقرب موعد',done:'تم',sum:{dep:'القسم',doc:'الطبيب',when:'الموعد'},noTime:'يرجى اختيار الوقت.',name:'الاسم الكامل',phone:'رقم الهاتف',open:'مفتوح ٢٤/٧',
       days:['أحد','اثنين','ثلاثاء','أربعاء','خميس','جمعة','سبت'],locale:'ar-LB'}
 };
 let lang = 'en';
@@ -969,11 +1014,15 @@ document.getElementById('langBtn').onclick = () => {
 /* ---------- Theme & text size ---------- */
 const root = document.documentElement;
 try{ const th = localStorage.getItem('hk-theme'); if (th) root.dataset.theme = th; }catch(e){}
+const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+function themeIcon(){ document.getElementById('themeBtn').innerHTML = ic(isDark() ? 'sun' : 'moon'); }
 document.getElementById('themeBtn').onclick = () => {
-  const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-  root.dataset.theme = dark ? 'light' : 'dark';
+  root.dataset.theme = isDark() ? 'light' : 'dark';
   try{ localStorage.setItem('hk-theme', root.dataset.theme); }catch(e){}
+  themeIcon();
 };
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', themeIcon);
+themeIcon();
 let fs = 100;
 try{ fs = +localStorage.getItem('hk-fs') || 100; }catch(e){}
 root.style.fontSize = fs + '%';
@@ -987,6 +1036,7 @@ document.querySelectorAll('[data-size]').forEach(b => b.onclick = () => {
 const initials = d => d.en[0].replace('Dr. ','').split(' ').map(s=>s[0]).join('');
 const avatar = (d, extra='') => `<span class="avatar" style="background:linear-gradient(135deg,${d.c[0]},${d.c[1]});${extra}">${initials(d)}</span>`;
 const depById = id => DEPTS.find(d => d.id === id);
+function nextDay(doc){ const d = new Date(); d.setHours(0,0,0,0); do { d.setDate(d.getDate()+1); } while (d.getDay()===0 || !doc.days.includes(d.getDay())); return d; }
 
 function renderDeps(){
   document.getElementById('depGrid').innerHTML = DEPTS.map((d,i) => `
@@ -1013,6 +1063,7 @@ function renderDocs(){
   document.getElementById('docGrid').innerHTML = list.length ? list.map(d => `
     <article class="doc">
       <span class="sample">${t('sample')}</span><div class="doc-top">${avatar(d)}<div><h3>${L(d)[0]}</h3><div class="spec">${L(d)[1]}</div></div></div>
+      <div class="next">${ic('clock')}${d.dep==='emergency'?`<b>${t('open')}</b>`:`${t('next')}: <b>${fmtDate(nextDay(d),{weekday:'short',day:'numeric',month:'short'})}</b>`}</div>
       <div class="days" aria-label="Clinic days">${order.map(n=>`<span class="day ${d.days.includes(n)?'on':''}">${t('days')[n]}</span>`).join('')}</div>
       ${d.dep==='emergency'
         ? `<a class="btn btn-er btn-sm" href="tel:+9617765362">${t('call')}</a>`
@@ -1140,6 +1191,7 @@ function renderStep(){
   foot.style.display = bk.step===4 ? 'none':'flex';
   document.getElementById('bkBack').style.visibility = bk.step===0 ? 'hidden':'visible';
   document.querySelector('#bkNext span').textContent = bk.step===3 ? t('confirm') : (lang==='ar'?AR['bk.next']:'Continue');
+  document.getElementById('bkNext').disabled = (bk.step===0 && !bk.dep) || (bk.step===1 && bk.doc===null) || (bk.step===2 && !bk.time);
 
   if (bk.step===0){
     body.innerHTML = `<p class="q">${t('q1')}</p><div class="opt-grid" role="radiogroup">${DEPTS.filter(d=>d.bookable).map(d=>`
@@ -1162,8 +1214,8 @@ function renderStep(){
       <div class="dates" role="radiogroup">${days.map(d=>`<button class="date" role="radio" aria-checked="${+d===+bk.date}" data-v="${+d}"><small>${fmtDate(d,{weekday:'short'})}</small><b>${d.getDate()}</b><small>${fmtDate(d,{month:'short'})}</small></button>`).join('')}</div>
       <div class="slots" role="radiogroup">${slots.map(s=>`<button class="slot" role="radio" ${s.taken?'disabled':''} aria-checked="${bk.time===s.t}" data-v="${s.t}" dir="ltr">${s.t}</button>`).join('')}</div>
       <p class="err-time" style="color:var(--er);font-weight:600;font-size:.88rem" hidden>${t('noTime')}</p>`;
-    body.querySelectorAll('.date').forEach(b=>b.onclick=()=>{ bk.date=new Date(+b.dataset.v); bk.time=null; renderStep(); const el=body.querySelector('.date[aria-checked="true"]'); el&&el.scrollIntoView({block:'nearest',inline:'center'}); });
-    body.querySelectorAll('.slot').forEach(b=>b.onclick=()=>{ bk.time=b.dataset.v; body.querySelectorAll('.slot').forEach(x=>x.setAttribute('aria-checked',x===b)); body.querySelector('.err-time').hidden=true; });
+    body.querySelectorAll('.date').forEach(b=>b.onclick=()=>{ const sl=body.querySelector('.dates').scrollLeft; bk.date=new Date(+b.dataset.v); bk.time=null; renderStep(); body.querySelector('.dates').scrollLeft=sl; });
+    body.querySelectorAll('.slot').forEach(b=>b.onclick=()=>{ bk.time=b.dataset.v; body.querySelectorAll('.slot').forEach(x=>x.setAttribute('aria-checked',x===b)); body.querySelector('.err-time').hidden=true; document.getElementById('bkNext').disabled=false; });
   }
   if (bk.step===3){
     const doc = DOCS.find(x=>x.id===bk.doc);
@@ -1234,6 +1286,15 @@ const secObs = new IntersectionObserver(es => es.forEach(en => {
   if (en.isIntersecting) navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+en.target.id));
 }), {rootMargin:'-45% 0px -50% 0px'});
 ['departments','doctors','insurance','patients','contact'].forEach(id => secObs.observe(document.getElementById(id)));
+
+/* Count-up stats */
+const cObs = 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches ? new IntersectionObserver(es => es.forEach(en => {
+  if (!en.isIntersecting) return; cObs.unobserve(en.target);
+  const el = en.target, end = +el.dataset.count, t0 = performance.now();
+  const tick = now => { const p = Math.min(1,(now-t0)/1400); el.textContent = Math.round(end*(1-Math.pow(1-p,3))); if (p<1) requestAnimationFrame(tick); };
+  requestAnimationFrame(tick);
+}), {threshold:.6}) : null;
+cObs && document.querySelectorAll('[data-count]').forEach(el => cObs.observe(el));
 
 /* Reveal on scroll */
 const revObs = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting){ en.target.classList.add('in'); revObs.unobserve(en.target); } }), {threshold:.12}) : null;
