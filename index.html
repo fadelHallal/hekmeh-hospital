@@ -1,0 +1,1245 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hekmeh Hospital</title>
+<meta name="description" content="Design concept for a Hekmeh Hospital website by Fadel Hallal. Not the official site.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0f766e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6faf9; --surface:#ffffff; --surface-2:#eef6f4; --text:#0b1f2e; --muted:#5a6b78; --line:#dfe9e6;
+  --brand:#0f766e; --brand-2:#14b8a6; --brand-soft:#d5f2ec; --navy:#0b2540;
+  --er:#dc2626; --er-soft:#fde8e8; --warm:#f59e0b;
+  --shadow-sm:0 1px 2px rgba(11,37,64,.06),0 2px 8px rgba(11,37,64,.04);
+  --shadow:0 10px 30px -10px rgba(11,37,64,.18),0 4px 10px -4px rgba(11,37,64,.06);
+  --shadow-lg:0 30px 60px -20px rgba(11,37,64,.30);
+  --r:20px; --r-sm:12px; --max:1200px;
+  --font:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#071317; --surface:#0d1d22; --surface-2:#11272d; --text:#e4efed; --muted:#93a8a5; --line:#1d343a;
+    --brand:#2dd4bf; --brand-2:#5eead4; --brand-soft:#0f3b38; --navy:#e4efed; --er:#f87171; --er-soft:#3a1717;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4); --shadow:0 10px 30px -10px rgba(0,0,0,.6); --shadow-lg:0 30px 60px -20px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#071317; --surface:#0d1d22; --surface-2:#11272d; --text:#e4efed; --muted:#93a8a5; --line:#1d343a;
+  --brand:#2dd4bf; --brand-2:#5eead4; --brand-soft:#0f3b38; --navy:#e4efed; --er:#f87171; --er-soft:#3a1717;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4); --shadow:0 10px 30px -10px rgba(0,0,0,.6); --shadow-lg:0 30px 60px -20px rgba(0,0,0,.7);
+}
+html[lang="ar"]{--font:'IBM Plex Sans Arabic','Plus Jakarta Sans',system-ui,sans-serif}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;font-size:1rem;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--brand-2);outline-offset:3px;border-radius:8px}
+.container{max-width:var(--max);margin-inline:auto;padding-inline:24px}
+@media (max-width:600px){.container{padding-inline:16px}}
+.skip{position:absolute;inset-inline-start:16px;top:-60px;background:var(--brand);color:#fff;padding:10px 16px;border-radius:10px;z-index:100;transition:top .2s}
+.skip:focus{top:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.ic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding-inline:24px;border-radius:999px;font-weight:700;font-size:.98rem;transition:transform .15s,box-shadow .2s,background .2s;white-space:nowrap}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--brand);color:#fff;box-shadow:0 8px 20px -8px color-mix(in srgb,var(--brand) 70%,transparent)}
+:root[data-theme="dark"] .btn-primary{color:#05201d}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-primary{color:#05201d}}
+.btn-primary:hover{box-shadow:0 14px 28px -10px color-mix(in srgb,var(--brand) 80%,transparent);transform:translateY(-1px)}
+.btn-ghost{background:var(--surface);border:1.5px solid var(--line);color:var(--text)}
+.btn-ghost:hover{border-color:var(--brand)}
+.btn-er{background:var(--er);color:#fff}
+.btn-sm{height:42px;padding-inline:18px;font-size:.9rem}
+
+/* Top bar */
+.topbar{background:var(--navy);color:#e7f2f0;font-size:.85rem}
+:root[data-theme="dark"] .topbar{background:#04100f;color:var(--text)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .topbar{background:#04100f;color:var(--text)}}
+.topbar .container{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:42px}
+.tb-left{display:flex;align-items:center;gap:20px}
+.tb-er{display:inline-flex;align-items:center;gap:8px;font-weight:700;white-space:nowrap}
+@media (max-width:420px){.tb-label{display:none}}
+.tb-er a{color:#fca5a5}
+.pulse{width:8px;height:8px;border-radius:50%;background:#ef4444;box-shadow:0 0 0 0 rgba(239,68,68,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
+.tb-loc{opacity:.75;display:inline-flex;gap:6px;align-items:center}
+.tb-loc .ic{width:16px;height:16px}
+.tb-right{display:flex;align-items:center;gap:6px}
+.tb-btn{height:30px;min-width:30px;padding-inline:8px;border-radius:8px;font-weight:600;font-size:.82rem;display:inline-flex;align-items:center;justify-content:center;gap:6px;color:inherit;opacity:.85}
+.tb-btn:hover{background:rgba(255,255,255,.1);opacity:1}
+.tb-btn .ic{width:16px;height:16px}
+.tb-sep{width:1px;height:16px;background:rgba(255,255,255,.2);margin-inline:6px}
+@media (max-width:760px){.tb-loc,.tb-size{display:none}}
+
+/* Header */
+.header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:saturate(1.6) blur(14px);-webkit-backdrop-filter:saturate(1.6) blur(14px);border-bottom:1px solid transparent;transition:border-color .2s,box-shadow .2s}
+.header.scrolled{border-bottom-color:var(--line);box-shadow:var(--shadow-sm)}
+.header .container{display:flex;align-items:center;gap:24px;height:78px;transition:height .2s}
+.header.scrolled .container{height:66px}
+.logo{display:flex;align-items:center;gap:12px;flex:none}
+.logo-mark{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:#fff;box-shadow:0 6px 16px -6px var(--brand)}
+.logo-mark svg{width:26px;height:26px}
+.logo-name{font-weight:800;font-size:1.12rem;letter-spacing:-.01em;line-height:1.15}
+.logo-tag{font-size:.75rem;color:var(--muted);font-weight:500}
+.nav{display:flex;gap:4px;margin-inline-start:auto}
+.nav a{padding:10px 14px;border-radius:10px;font-weight:600;font-size:.94rem;color:var(--muted);transition:color .15s,background .15s}
+.nav a:hover,.nav a.active{color:var(--text);background:var(--surface-2)}
+.header-cta{display:flex;gap:10px;align-items:center}
+.menu-btn{display:none;width:46px;height:46px;border-radius:12px;border:1.5px solid var(--line);place-items:center;margin-inline-start:auto;background:var(--surface)}
+@media (max-width:1040px){.nav,.header-cta .btn-ghost{display:none}.menu-btn{display:grid}.header-cta{order:3}}
+@media (max-width:560px){.header-cta{display:none}.logo-tag{display:none}}
+
+/* Mobile drawer */
+.drawer-nav{position:fixed;inset:0;z-index:80;visibility:hidden}
+.drawer-nav.open{visibility:visible}
+.scrim{position:absolute;inset:0;background:rgba(5,20,25,.45);opacity:0;transition:opacity .25s}
+.open>.scrim{opacity:1}
+.drawer-nav .panel{position:absolute;inset-block:0;inset-inline-end:0;width:min(360px,88vw);background:var(--surface);padding:20px;display:flex;flex-direction:column;gap:6px;transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);box-shadow:var(--shadow-lg)}
+[dir="rtl"] .drawer-nav .panel{transform:translateX(-100%)}
+.drawer-nav.open .panel{transform:none}
+.drawer-nav .panel a.link{padding:14px 12px;border-radius:12px;font-weight:600;font-size:1.05rem}
+.drawer-nav .panel a.link:hover{background:var(--surface-2)}
+.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.icon-btn{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--surface-2)}
+.icon-btn:hover{background:var(--brand-soft)}
+
+/* Hero */
+.hero{position:relative;padding:56px 0 40px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:780px;height:780px;background:radial-gradient(closest-side,color-mix(in srgb,var(--brand-2) 22%,transparent),transparent);pointer-events:none}
+[dir="rtl"] .hero::before{inset:-20% auto auto -10%}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;position:relative}
+@media (max-width:960px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 12px;border-radius:999px;background:var(--er-soft);color:var(--er);font-weight:700;font-size:.85rem}
+h1{font-size:clamp(2.3rem,5.2vw,3.9rem);line-height:1.06;letter-spacing:-.035em;margin:20px 0 18px;font-weight:800;text-wrap:balance}
+html[lang="ar"] h1{letter-spacing:0;line-height:1.25}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:1.15rem;color:var(--muted);max-width:560px;margin:0 0 30px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+.trust{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:30px;color:var(--muted);font-size:.9rem;font-weight:600}
+.trust span{display:inline-flex;align-items:center;gap:8px}
+.trust .ic{width:20px;height:20px;color:var(--brand)}
+
+.hero-visual{position:relative;aspect-ratio:1/1;max-width:520px;width:100%;justify-self:center}
+.hv-card{position:absolute;inset:6% 6% 6% 6%;border-radius:36px;background:linear-gradient(160deg,var(--brand) 0%,#0b5d57 60%,var(--navy) 100%);overflow:hidden;box-shadow:var(--shadow-lg)}
+:root[data-theme="dark"] .hv-card{background:linear-gradient(160deg,#0f766e,#0b3d3a 60%,#061a1d)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hv-card{background:linear-gradient(160deg,#0f766e,#0b3d3a 60%,#061a1d)}}
+.hv-card svg{position:absolute;inset:auto 0 0 0;width:100%;height:auto}
+.float{position:absolute;background:var(--surface);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;font-size:.88rem;animation:bob 6s ease-in-out infinite}
+.float b{display:block;font-size:.98rem}
+.float small{color:var(--muted);font-weight:500}
+.float .fi{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:none}
+.f1{top:2%;inset-inline-start:-4%}
+.f2{top:42%;inset-inline-end:-6%;animation-delay:-2s}
+.f3{bottom:2%;inset-inline-start:4%;animation-delay:-4s}
+@keyframes bob{50%{transform:translateY(-8px)}}
+@media (max-width:560px){.f1{inset-inline-start:0}.f2{inset-inline-end:0}}
+
+/* Quick actions */
+.quick{margin-top:24px;position:relative;z-index:2}
+.qa-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media (max-width:960px){.qa-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.qa-grid{gap:10px}}
+.qa{display:flex;flex-direction:column;gap:14px;padding:22px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-sm);text-align:start;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative}
+.qa:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--brand) 40%,var(--line))}
+.qa .qi{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--brand-soft);color:var(--brand)}
+.qa b{font-size:1.05rem;display:block}
+.qa span{color:var(--muted);font-size:.9rem}
+.qa .arrow{position:absolute;top:22px;inset-inline-end:22px;color:var(--muted);transition:transform .2s}
+[dir="rtl"] .qa .arrow{transform:scaleX(-1)}
+.qa:hover .arrow{color:var(--brand);transform:translateX(3px)}
+[dir="rtl"] .qa:hover .arrow{transform:scaleX(-1) translateX(3px)}
+@media (max-width:480px){.qa{padding:16px}.qa .arrow{display:none}.qa span{font-size:.82rem}}
+
+/* Sections */
+section{padding:88px 0}
+@media (max-width:700px){section{padding:64px 0}}
+.eyebrow{display:inline-block;font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);margin-bottom:12px}
+html[lang="ar"] .eyebrow{letter-spacing:0;font-size:.9rem}
+h2{font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.12;letter-spacing:-.03em;margin:0 0 14px;font-weight:800;text-wrap:balance}
+html[lang="ar"] h2{letter-spacing:0;line-height:1.3}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px;flex-wrap:wrap}
+.sec-head p{color:var(--muted);max-width:560px;margin:0;font-size:1.05rem}
+.alt{background:var(--surface)}
+
+/* Departments */
+.dep-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media (max-width:1040px){.dep-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.dep-grid{gap:10px}.dep{padding:18px;gap:8px}.dep p,.dep .more{display:none}.dep h3{font-size:.98rem;margin:4px 0 0}.dep .di{width:46px;height:46px;border-radius:14px}.tag-247{top:14px;inset-inline-end:14px}}
+.dep{padding:26px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line);text-align:start;display:flex;flex-direction:column;gap:12px;transition:all .25s;position:relative;overflow:hidden}
+.dep::after{content:"";position:absolute;inset:auto -40px -40px auto;width:120px;height:120px;border-radius:50%;background:var(--brand-soft);opacity:0;transition:opacity .25s,transform .35s;transform:scale(.6)}
+[dir="rtl"] .dep::after{inset:auto auto -40px -40px}
+.dep:hover{border-color:color-mix(in srgb,var(--brand) 45%,var(--line));box-shadow:var(--shadow);transform:translateY(-3px)}
+.dep:hover::after{opacity:.7;transform:scale(1)}
+.dep .di{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:var(--surface-2);color:var(--brand);transition:background .25s,color .25s;position:relative;z-index:1}
+.dep:hover .di{background:var(--brand);color:#fff}
+.dep h3{margin:6px 0 0;font-size:1.12rem;position:relative;z-index:1}
+.dep p{margin:0;color:var(--muted);font-size:.92rem;position:relative;z-index:1}
+.dep .more{margin-top:auto;padding-top:6px;color:var(--brand);font-weight:700;font-size:.9rem;display:inline-flex;align-items:center;gap:6px;position:relative;z-index:1}
+.dep .more .ic{width:18px;height:18px}
+[dir="rtl"] .dep .more .ic{transform:scaleX(-1)}
+.dep.er .di{background:var(--er-soft);color:var(--er)}
+.dep.er:hover .di{background:var(--er);color:#fff}
+.tag-247{position:absolute;top:22px;inset-inline-end:22px;font-size:.72rem;font-weight:800;color:var(--er);background:var(--er-soft);padding:4px 8px;border-radius:999px;z-index:1}
+
+/* Why + stats */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+@media (max-width:960px){.why-grid{grid-template-columns:1fr}}
+.why-list{display:flex;flex-direction:column;gap:22px;margin-top:28px}
+.why-item{display:flex;gap:16px}
+.why-item .wi{width:46px;height:46px;border-radius:14px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;flex:none}
+.why-item h3{margin:0 0 4px;font-size:1.08rem}
+.why-item p{margin:0;color:var(--muted)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stat{padding:28px;border-radius:var(--r);background:var(--bg);border:1px solid var(--line)}
+.stat:nth-child(1){background:linear-gradient(150deg,var(--brand),#0b5d57);color:#fff;border:0}
+.stat:nth-child(1) .sl{color:#cdeee8}
+.stat .sv{font-size:clamp(2.2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1}
+.stat .sl{color:var(--muted);font-weight:600;margin-top:10px}
+.stat:nth-child(4) .sv{color:var(--er)}
+
+/* Doctors */
+.doc-tools{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:28px}
+.search{flex:1 1 320px;position:relative}
+.search .ic{position:absolute;inset-inline-start:18px;top:50%;transform:translateY(-50%);color:var(--muted);width:20px;height:20px}
+.search input{width:100%;height:54px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);padding-inline:50px 20px;font-size:1rem;transition:border-color .2s,box-shadow .2s}
+.search input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px var(--brand-soft)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;max-width:100%}
+.chips::-webkit-scrollbar{display:none}
+.chip{height:40px;padding-inline:16px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);font-weight:600;font-size:.88rem;white-space:nowrap;color:var(--muted);transition:all .15s}
+.chip:hover{border-color:var(--brand);color:var(--text)}
+.chip[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+:root[data-theme="dark"] .chip[aria-pressed="true"]{color:#05201d}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chip[aria-pressed="true"]{color:#05201d}}
+.doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.doc{padding:22px;border-radius:var(--r);background:var(--bg);border:1px solid var(--line);display:flex;flex-direction:column;gap:16px;transition:box-shadow .2s,transform .2s}
+.doc:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.doc-top{display:flex;gap:14px;align-items:center}
+.avatar{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#fff;font-size:1.1rem;flex:none}
+.doc h3{margin:0;font-size:1.04rem}
+.doc .spec{color:var(--brand);font-weight:600;font-size:.88rem}
+.days{display:flex;gap:5px;flex-wrap:wrap}
+.day{font-size:.74rem;font-weight:700;padding:4px 8px;border-radius:8px;background:var(--surface-2);color:var(--muted)}
+.day.on{background:var(--brand-soft);color:var(--brand)}
+.doc .btn{width:100%}
+.empty{grid-column:1/-1;text-align:center;padding:48px;color:var(--muted);border:1.5px dashed var(--line);border-radius:var(--r)}
+
+/* Insurance */
+.ins-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center;padding:48px;border-radius:32px;background:linear-gradient(140deg,var(--surface) 0%,var(--surface-2) 100%);border:1px solid var(--line)}
+@media (max-width:960px){.ins-wrap{grid-template-columns:1fr;padding:28px}}
+.ins-wrap p{color:var(--muted);font-size:1.05rem}
+.g-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:420px){.g-grid{grid-template-columns:1fr}}
+.g{display:flex;align-items:center;gap:12px;padding:16px;border-radius:16px;background:var(--surface);border:1px solid var(--line);font-weight:600;font-size:.94rem}
+.g .gc{width:30px;height:30px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;flex:none}
+.g .gc .ic{width:16px;height:16px;stroke-width:2.6}
+.ins-help{margin-top:24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-weight:600}
+
+/* Patients & visitors tabs */
+.tabs{display:inline-flex;gap:4px;padding:5px;border-radius:999px;background:var(--surface-2);margin-bottom:28px;max-width:100%;overflow-x:auto;scrollbar-width:none}
+.tab{height:44px;padding-inline:20px;border-radius:999px;font-weight:700;font-size:.92rem;color:var(--muted);white-space:nowrap;transition:all .2s}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--text);box-shadow:var(--shadow-sm)}
+.tabpanel{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:760px){.tabpanel{grid-template-columns:1fr}}
+.tabpanel[hidden]{display:none}
+.info{display:flex;gap:16px;padding:22px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line);animation:fade .35s ease}
+.info .num{width:36px;height:36px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-weight:800;flex:none}
+.info p{margin:4px 0 0}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}}
+
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+@media (max-width:960px){.faq-grid{grid-template-columns:1fr;gap:24px}}
+.faq{border-bottom:1px solid var(--line)}
+.faq button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;text-align:start;font-weight:700;font-size:1.06rem}
+.faq .pm{width:34px;height:34px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;flex:none;transition:transform .3s,background .2s}
+.faq .pm .ic{width:18px;height:18px}
+.faq button[aria-expanded="true"] .pm{transform:rotate(45deg);background:var(--brand);color:#fff}
+.faq .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.faq .ans>div{overflow:hidden}
+.faq .ans p{margin:0 0 22px;color:var(--muted);max-width:640px}
+.faq button[aria-expanded="true"]+.ans{grid-template-rows:1fr}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media (max-width:960px){.contact-grid{grid-template-columns:1fr}}
+.c-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
+@media (max-width:520px){.c-list{grid-template-columns:1fr}}
+.c-item{padding:20px;border-radius:var(--r);background:var(--bg);border:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.c-item .ci{width:40px;height:40px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;margin-bottom:6px}
+.c-item small{color:var(--muted);font-weight:600}
+.c-item a,.c-item span{font-weight:700;direction:ltr;unicode-bidi:plaintext}
+.c-item.er .ci{background:var(--er-soft);color:var(--er)}
+.map{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);min-height:300px;background:var(--surface-2);position:relative}
+.map iframe{width:100%;height:100%;min-height:300px;border:0;display:block}
+.form-card{padding:32px;border-radius:var(--r);background:var(--bg);border:1px solid var(--line)}
+@media (max-width:520px){.form-card{padding:22px}}
+.form-card h3{margin:0 0 18px;font-size:1.3rem}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field label{font-weight:600;font-size:.88rem}
+.field input,.field select,.field textarea{height:50px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);padding-inline:14px;font-size:1rem;transition:border-color .2s,box-shadow .2s;width:100%}
+.field textarea{height:110px;padding-block:12px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px var(--brand-soft)}
+.field.invalid input{border-color:var(--er)}
+.field .err{color:var(--er);font-size:.82rem;font-weight:600;display:none}
+.field.invalid .err{display:block}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.row2{grid-template-columns:1fr}}
+.success{display:flex;gap:12px;align-items:center;padding:16px;border-radius:12px;background:var(--brand-soft);color:var(--brand);font-weight:700;margin-top:12px}
+
+/* Footer */
+footer{background:var(--navy);color:#cfe0de;padding:64px 0 28px;margin-top:0}
+:root[data-theme="dark"] footer{background:#04100f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) footer{background:#04100f}}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+@media (max-width:860px){.f-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.f-grid{grid-template-columns:1fr}}
+footer h4{color:#fff;margin:0 0 14px;font-size:1rem}
+footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+footer a:hover{color:#fff}
+footer .logo-name{color:#fff}
+footer .about{opacity:.8;margin:16px 0 20px;max-width:340px}
+.social{display:flex;gap:10px}
+.social a{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.08);display:grid;place-items:center}
+.social a:hover{background:rgba(255,255,255,.16)}
+.f-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);font-size:.88rem;opacity:.75}
+.f-bottom div{display:flex;gap:18px}
+
+/* Mobile bottom bar */
+.mbar{position:fixed;inset-inline:12px;bottom:12px;z-index:60;display:none;grid-template-columns:1fr 1.3fr 1fr;gap:8px;padding:8px;border-radius:22px;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow-lg);border:1px solid var(--line)}
+.mbar a,.mbar button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:56px;border-radius:16px;font-size:.76rem;font-weight:700}
+.mbar .ic{width:22px;height:22px}
+.mbar .m-er{color:var(--er);background:var(--er-soft)}
+.mbar .m-book{background:var(--brand);color:#fff}
+:root[data-theme="dark"] .mbar .m-book{color:#05201d}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mbar .m-book{color:#05201d}}
+.mbar .m-dir{background:var(--surface-2)}
+@media (max-width:760px){.mbar{display:grid}body{padding-bottom:92px}}
+
+/* Modal */
+.modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:16px;visibility:hidden}
+.modal.open{visibility:visible}
+.modal .box{position:relative;width:min(640px,100%);max-height:min(92vh,820px);background:var(--surface);border-radius:28px;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;opacity:0;transform:translateY(16px) scale(.98);transition:opacity .25s,transform .3s cubic-bezier(.2,.8,.2,1)}
+.modal.open .box{opacity:1;transform:none}
+@media (max-width:600px){.modal{padding:0;place-items:end stretch}.modal .box{border-radius:28px 28px 0 0;max-height:94vh;transform:translateY(100%)}}
+.m-head{padding:22px 24px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.m-head h2{font-size:1.35rem;margin:0;letter-spacing:-.01em}
+.m-body{padding:20px 24px;overflow-y:auto;flex:1}
+.m-foot{padding:16px 24px 22px;display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line)}
+.m-foot .btn{flex:1}
+.m-foot .btn-ghost{flex:0 0 auto}
+.steps{display:flex;gap:6px;padding:18px 24px 0}
+.step{flex:1;display:flex;flex-direction:column;gap:8px;font-size:.76rem;font-weight:700;color:var(--muted)}
+.step::before{content:"";height:5px;border-radius:5px;background:var(--line);transition:background .3s}
+.step.done::before,.step.cur::before{background:var(--brand)}
+.step.cur{color:var(--text)}
+@media (max-width:480px){.step span{display:none}}
+.q{font-weight:800;font-size:1.1rem;margin:0 0 14px}
+.opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:480px){.opt-grid{grid-template-columns:1fr}}
+.opt{display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;border:1.5px solid var(--line);text-align:start;font-weight:600;transition:all .15s;background:var(--surface)}
+.opt:hover{border-color:color-mix(in srgb,var(--brand) 50%,var(--line))}
+.opt[aria-checked="true"]{border-color:var(--brand);background:var(--brand-soft);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 18%,transparent)}
+.opt .oi{width:40px;height:40px;border-radius:12px;background:var(--surface-2);color:var(--brand);display:grid;place-items:center;flex:none}
+.opt .avatar{width:40px;height:40px;font-size:.85rem}
+.opt small{display:block;color:var(--muted);font-weight:500;font-size:.8rem}
+.note{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:var(--er-soft);color:var(--er);font-size:.88rem;font-weight:600;margin-top:14px}
+.note .ic{width:20px;height:20px}
+.dates{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:thin;margin-bottom:16px}
+.date{flex:none;width:64px;padding:10px 0;border-radius:16px;border:1.5px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:2px;transition:all .15s}
+.date small{font-size:.72rem;color:var(--muted);font-weight:700;text-transform:uppercase}
+.date b{font-size:1.25rem}
+.date[aria-checked="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.date[aria-checked="true"] small{color:#d6f5ef}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:420px){.slots{grid-template-columns:repeat(3,1fr)}}
+.slot{height:44px;border-radius:12px;border:1.5px solid var(--line);font-weight:700;font-size:.9rem;transition:all .15s}
+.slot:hover:not(:disabled){border-color:var(--brand)}
+.slot:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed}
+.slot[aria-checked="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.summary{padding:16px;border-radius:16px;background:var(--surface-2);display:grid;gap:6px;font-size:.92rem;margin-bottom:18px}
+.summary div{display:flex;justify-content:space-between;gap:12px}
+.summary span{color:var(--muted)}
+.done-view{text-align:center;padding:12px 0}
+.done-view .check{width:84px;height:84px;margin:6px auto 16px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;animation:pop .5s cubic-bezier(.2,1.4,.4,1)}
+.done-view .check .ic{width:40px;height:40px;stroke-width:2.5}
+@keyframes pop{from{transform:scale(.4);opacity:0}}
+.ref{display:inline-block;margin-top:8px;padding:8px 14px;border-radius:10px;background:var(--surface-2);font-weight:800;letter-spacing:.05em;direction:ltr}
+
+/* Department drawer */
+.side{position:fixed;inset:0;z-index:85;visibility:hidden}
+.side.open{visibility:visible}
+.side .sheet{position:absolute;inset-block:0;inset-inline-end:0;width:min(480px,100%);background:var(--surface);box-shadow:var(--shadow-lg);transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;overflow-y:auto}
+[dir="rtl"] .side .sheet{transform:translateX(-100%)}
+.side.open .sheet{transform:none}
+.sheet-hero{padding:28px;background:linear-gradient(150deg,var(--brand),#0b5d57);color:#fff;position:relative}
+.sheet-hero .di{width:60px;height:60px;border-radius:18px;background:rgba(255,255,255,.16);display:grid;place-items:center;margin:28px 0 16px}
+.sheet-hero .di .ic{width:30px;height:30px}
+.sheet-hero h2{margin:0 0 8px;font-size:1.7rem}
+.sheet-hero p{margin:0;opacity:.88}
+.sheet-hero .icon-btn{position:absolute;top:20px;inset-inline-end:20px;background:rgba(255,255,255,.16);color:#fff}
+.sheet-body{padding:28px;display:flex;flex-direction:column;gap:24px;flex:1}
+.sheet-body h4{margin:0 0 12px;font-size:.82rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.svc{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.svc li{display:flex;gap:10px;align-items:center;font-weight:600}
+.svc li .ic{color:var(--brand);width:20px;height:20px}
+.mini-doc{display:flex;gap:12px;align-items:center;padding:12px;border-radius:14px;background:var(--surface-2);margin-bottom:8px}
+.mini-doc .avatar{width:44px;height:44px;font-size:.9rem}
+.sheet-foot{padding:20px 28px;border-top:1px solid var(--line);position:sticky;bottom:0;background:var(--surface)}
+.sheet-foot .btn{width:100%}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+body.lock{overflow:hidden}
+.concept{background:#fef3c7;color:#78350f;font-size:.84rem;font-weight:600;text-align:center;padding:8px 16px;line-height:1.45}
+.concept a{text-decoration:underline;white-space:nowrap}
+.sample{font-size:.7rem;font-weight:700;color:var(--muted);background:var(--surface-2);padding:3px 8px;border-radius:999px;align-self:flex-start}
+.preview-note{display:flex;gap:10px;align-items:flex-start;text-align:start;padding:14px;border-radius:14px;background:#fef3c7;color:#78350f;font-weight:600;font-size:.9rem;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="concept" role="note"><span data-i18n="concept">Design concept by Fadel Hallal — not the official Hekmeh Hospital website. Forms on this page don’t send anything; to book, call</span> <a href="tel:+9617761776" dir="ltr">+961 7 761776</a></div>
+<a href="#main" class="skip" data-i18n="skip">Skip to content</a>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div class="container">
+    <div class="tb-left">
+      <span class="tb-er"><span class="pulse"></span><span class="tb-label"><span data-i18n="tb.er">Emergency 24/7</span> ·</span> <a href="tel:+9617765362" dir="ltr">+961 7 765362</a></span>
+      <span class="tb-loc"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span data-i18n="tb.loc">Khalet Al-Hawa, Nabatieh</span></span>
+    </div>
+    <div class="tb-right">
+      <span class="tb-size" role="group" aria-label="Text size">
+        <button class="tb-btn" data-size="-1" aria-label="Smaller text">A−</button>
+        <button class="tb-btn" data-size="1" aria-label="Larger text">A+</button>
+      </span>
+      <span class="tb-sep tb-size"></span>
+      <button class="tb-btn" id="themeBtn" aria-label="Toggle dark mode">
+        <svg class="ic" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="tb-btn" id="langBtn" aria-label="Switch language"><span id="langLabel">العربية</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="header" id="header">
+  <div class="container">
+    <a href="#top" class="logo" aria-label="Hekmeh Hospital home">
+      <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+      <span><span class="logo-name" data-i18n="brand">Hekmeh Hospital</span><br><span class="logo-tag" data-i18n="brand.tag">Nabatieh · Since 1980</span></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#departments" data-i18n="nav.dep">Departments</a>
+      <a href="#doctors" data-i18n="nav.doc">Doctors</a>
+      <a href="#patients" data-i18n="nav.pat">Patients &amp; Visitors</a>
+      <a href="#insurance" data-i18n="nav.ins">Insurance</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="header-cta">
+      <button class="btn btn-primary btn-sm" data-book><span data-i18n="cta.book">Book appointment</span></button>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+      <svg class="ic" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="drawer-nav" id="drawerNav" aria-hidden="true">
+  <div class="scrim" data-close></div>
+  <div class="panel" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="panel-head">
+      <span class="logo-name" data-i18n="brand">Hekmeh Hospital</span>
+      <button class="icon-btn" data-close aria-label="Close"><svg class="ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <a class="link" href="#departments" data-i18n="nav.dep">Departments</a>
+    <a class="link" href="#doctors" data-i18n="nav.doc">Doctors</a>
+    <a class="link" href="#patients" data-i18n="nav.pat">Patients &amp; Visitors</a>
+    <a class="link" href="#insurance" data-i18n="nav.ins">Insurance</a>
+    <a class="link" href="#contact" data-i18n="nav.contact">Contact</a>
+    <div style="margin-top:auto;display:grid;gap:10px">
+      <button class="btn btn-primary" data-book><span data-i18n="cta.book">Book appointment</span></button>
+      <a class="btn btn-er" href="tel:+9617765362"><span data-i18n="hero.call">Call emergency</span></a>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+<!-- Hero -->
+<div class="hero" id="top">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="badge"><span class="pulse"></span><span data-i18n="hero.badge">Emergency department open now</span></span>
+        <h1 data-i18n="hero.h">Caring for South Lebanon <em>for over 45 years</em></h1>
+        <p class="lead" data-i18n="hero.p">A licensed general hospital in Nabatieh with round-the-clock emergency care, modern diagnostics and specialists you can trust — contracted with every official guarantor.</p>
+        <div class="hero-ctas">
+          <button class="btn btn-primary" data-book>
+            <svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+            <span data-i18n="cta.book">Book appointment</span>
+          </button>
+          <a class="btn btn-ghost" href="tel:+9617765362" style="color:var(--er)">
+            <svg class="ic" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+            <span data-i18n="hero.call">Call emergency</span>
+          </a>
+        </div>
+        <div class="trust">
+          <span><svg class="ic" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><span data-i18n="hero.trust1">Ministry of Public Health licensed</span></span>
+          <span><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg><span data-i18n="hero.trust2">All guarantors accepted</span></span>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hv-card">
+          <svg viewBox="0 0 400 400" fill="none">
+            <circle cx="300" cy="90" r="44" fill="#fff" opacity=".1"/>
+            <circle cx="300" cy="90" r="26" fill="#fff" opacity=".12"/>
+            <path d="M0 330 Q100 300 200 320 T400 310 V400 H0Z" fill="#fff" opacity=".06"/>
+            <!-- building -->
+            <rect x="70" y="150" width="260" height="210" rx="10" fill="#fff" opacity=".95"/>
+            <rect x="150" y="105" width="100" height="60" rx="8" fill="#fff"/>
+            <rect x="186" y="118" width="28" height="28" rx="6" fill="#ef4444"/>
+            <path d="M200 124v16M192 132h16" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+            <g fill="#14b8a6" opacity=".55">
+              <rect x="95" y="180" width="34" height="26" rx="4"/><rect x="141" y="180" width="34" height="26" rx="4"/><rect x="225" y="180" width="34" height="26" rx="4"/><rect x="271" y="180" width="34" height="26" rx="4"/>
+              <rect x="95" y="222" width="34" height="26" rx="4"/><rect x="141" y="222" width="34" height="26" rx="4"/><rect x="225" y="222" width="34" height="26" rx="4"/><rect x="271" y="222" width="34" height="26" rx="4"/>
+              <rect x="95" y="264" width="34" height="26" rx="4"/><rect x="271" y="264" width="34" height="26" rx="4"/>
+            </g>
+            <rect x="170" y="290" width="60" height="70" rx="6" fill="#0f766e"/>
+            <path d="M200 290v70" stroke="#fff" stroke-width="2" opacity=".5"/>
+            <rect x="160" y="270" width="80" height="14" rx="4" fill="#0b2540" opacity=".85"/>
+            <!-- trees -->
+            <circle cx="45" cy="330" r="26" fill="#5eead4" opacity=".5"/><rect x="43" y="335" width="4" height="25" fill="#fff" opacity=".4"/>
+            <circle cx="360" cy="325" r="30" fill="#5eead4" opacity=".45"/><rect x="358" y="330" width="4" height="30" fill="#fff" opacity=".4"/>
+            <rect x="0" y="358" width="400" height="42" fill="#0b2540" opacity=".35"/>
+            <!-- heartbeat -->
+            <path d="M20 60h70l12-22 16 44 14-30 10 8h80" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".35"/>
+          </svg>
+        </div>
+        <div class="float f1"><span class="fi" style="background:var(--er-soft);color:var(--er)"><svg class="ic" viewBox="0 0 24 24"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg></span><span><b data-i18n="fc.er">Emergency</b><small data-i18n="fc.open">Open 24/7</small></span></div>
+        <div class="float f2"><span class="fi" style="background:var(--brand-soft);color:var(--brand)"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg></span><span><small data-i18n="fc.since">Serving since</small><b>1980</b></span></div>
+        <div class="float f3"><span class="fi" style="background:#fef3c7;color:#b45309"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><b data-i18n="fc.book">Book online</b><small data-i18n="fc.fast">In under a minute</small></span></div>
+      </div>
+    </div>
+
+    <!-- Quick actions -->
+    <div class="quick reveal">
+      <div class="qa-grid">
+        <button class="qa" data-book>
+          <span class="qi"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg></span>
+          <span><b data-i18n="qa.book.t">Book an appointment</b><span data-i18n="qa.book.d">Pick a clinic, doctor and time</span></span>
+          <svg class="ic arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <a class="qa" href="#doctors" data-focus-search>
+          <span class="qi"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></span>
+          <span><b data-i18n="qa.doc.t">Find a doctor</b><span data-i18n="qa.doc.d">Search by name or specialty</span></span>
+          <svg class="ic arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <button class="qa" data-open="labModal">
+          <span class="qi"><svg class="ic" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3M7.5 15h9"/></svg></span>
+          <span><b data-i18n="qa.lab.t">Lab results</b><span data-i18n="qa.lab.d">Request your results securely</span></span>
+          <svg class="ic arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <a class="qa" href="https://www.google.com/maps/search/?api=1&query=Hekmeh+Hospital+Nabatieh" target="_blank" rel="noopener">
+          <span class="qi"><svg class="ic" viewBox="0 0 24 24"><path d="M3 11l18-8-8 18-2-8z"/></svg></span>
+          <span><b data-i18n="qa.dir.t">Get directions</b><span data-i18n="qa.dir.d">Khalet Al-Hawa, Nabatieh</span></span>
+          <svg class="ic arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Departments -->
+<section id="departments">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow" data-i18n="dep.eyebrow">Our departments</span><h2 data-i18n="dep.h">Complete care under one roof</h2></div>
+      <p data-i18n="dep.p">From your first check-up to surgery and recovery, every specialty works together around you.</p>
+    </div>
+    <div class="dep-grid" id="depGrid"></div>
+  </div>
+</section>
+
+<!-- Why -->
+<section class="alt">
+  <div class="container why-grid">
+    <div class="reveal">
+      <span class="eyebrow" data-i18n="why.eyebrow">Why Hekmeh</span>
+      <h2 data-i18n="why.h">Close to home. Serious about care.</h2>
+      <div class="why-list">
+        <div class="why-item"><span class="wi"><svg class="ic" viewBox="0 0 24 24"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg></span><div><h3 data-i18n="why1.t">Emergency that never closes</h3><p data-i18n="why1.d">A fully staffed ER, ICU and operating theatre, ready day and night.</p></div></div>
+        <div class="why-item"><span class="wi"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg></span><div><h3 data-i18n="why2.t">No paperwork surprises</h3><p data-i18n="why2.d">We're contracted with NSSF, the Army, security forces, COOP and private insurers.</p></div></div>
+        <div class="why-item"><span class="wi"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span><div><h3 data-i18n="why3.t">A family hospital since 1980</h3><p data-i18n="why3.d">Generations of families in the South have trusted us with their care.</p></div></div>
+      </div>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><div class="sv"><span data-count="45">45</span>+</div><div class="sl" data-i18n="st.years">Years of care</div></div>
+      <div class="stat"><div class="sv">24/7</div><div class="sl" data-i18n="st.er">Emergency, every day</div></div>
+      <div class="stat"><div class="sv"><span data-count="8">8</span></div><div class="sl" data-i18n="st.dep">Core departments</div></div>
+      <div class="stat"><div class="sv" data-i18n="st.all">All</div><div class="sl" data-i18n="st.g">Official guarantors accepted</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Doctors -->
+<section id="doctors" class="alt" style="padding-top:0">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow" data-i18n="doc.eyebrow">Our doctors</span><h2 data-i18n="doc.h">Find the right specialist</h2></div>
+    </div>
+    <div class="doc-tools reveal">
+      <label class="search"><span class="sr" data-i18n="doc.search">Search a doctor or specialty…</span>
+        <svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input id="docSearch" type="search" data-i18n-ph="doc.search" placeholder="Search a doctor or specialty…" autocomplete="off">
+      </label>
+      <div class="chips" id="docChips" role="group" aria-label="Filter by department"></div>
+    </div>
+    <div class="doc-grid" id="docGrid" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- Insurance -->
+<section id="insurance">
+  <div class="container">
+    <div class="ins-wrap reveal">
+      <div>
+        <span class="eyebrow" data-i18n="ins.eyebrow">Insurance &amp; guarantors</span>
+        <h2 data-i18n="ins.h">Your coverage is welcome here</h2>
+        <p data-i18n="ins.p">Hekmeh Hospital is contracted with all official guarantor institutions and major private insurers. Bring your card and ID — our admissions team handles the rest.</p>
+        <div class="ins-help"><span data-i18n="ins.q">Not sure about your coverage?</span> <a class="btn btn-ghost btn-sm" href="tel:+9617761776"><span data-i18n="ins.qa">Ask admissions</span></a></div>
+      </div>
+      <div class="g-grid" id="gGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Patients & visitors -->
+<section id="patients" class="alt">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow" data-i18n="pv.eyebrow">Patients &amp; visitors</span><h2 data-i18n="pv.h">Everything you need before you arrive</h2></div>
+    </div>
+    <div class="tabs reveal" role="tablist" aria-label="Patient information">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="p-adm" id="t-adm" data-i18n="pv.t1">Admission</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p-vis" id="t-vis" tabindex="-1" data-i18n="pv.t2">Visiting</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p-bring" id="t-bring" tabindex="-1" data-i18n="pv.t3">What to bring</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p-bill" id="t-bill" tabindex="-1" data-i18n="pv.t4">Billing</button>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="p-adm" aria-labelledby="t-adm">
+      <div class="info"><span class="num">1</span><p data-i18n="pv.a1">Go to the admissions desk on the ground floor with your ID and guarantor card.</p></div>
+      <div class="info"><span class="num">2</span><p data-i18n="pv.a2">For planned surgery, our team will call you the day before with fasting instructions.</p></div>
+      <div class="info"><span class="num">3</span><p data-i18n="pv.a3">Emergency patients are treated first — paperwork can wait.</p></div>
+      <div class="info"><span class="num">4</span><p data-i18n="pv.a4">Questions before you come? Call admissions on +961 7 761776.</p></div>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="p-vis" aria-labelledby="t-vis" hidden>
+      <div class="info"><span class="num">1</span><p data-i18n="pv.v1">General wards: 11:00 – 13:00 and 16:00 – 20:00, every day.</p></div>
+      <div class="info"><span class="num">2</span><p data-i18n="pv.v2">ICU &amp; neonatal: one close family member at a time, by arrangement with the nurse in charge.</p></div>
+      <div class="info"><span class="num">3</span><p data-i18n="pv.v3">Please keep visits short and avoid visiting if you have a fever or a cold.</p></div>
+      <div class="info"><span class="num">4</span><p data-i18n="pv.v4">Children under 12 should visit only when accompanied by an adult.</p></div>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="p-bring" aria-labelledby="t-bring" hidden>
+      <div class="info"><span class="num">1</span><p data-i18n="pv.b1">ID card or passport</p></div>
+      <div class="info"><span class="num">2</span><p data-i18n="pv.b2">Guarantor or insurance card and any referral</p></div>
+      <div class="info"><span class="num">3</span><p data-i18n="pv.b3">Your current medications and recent test results</p></div>
+      <div class="info"><span class="num">4</span><p data-i18n="pv.b4">Comfortable clothes and personal toiletries</p></div>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="p-bill" aria-labelledby="t-bill" hidden>
+      <div class="info"><span class="num">1</span><p data-i18n="pv.f1">We bill your guarantor directly — you only pay your share.</p></div>
+      <div class="info"><span class="num">2</span><p data-i18n="pv.f2">Ask for a cost estimate before any planned procedure.</p></div>
+      <div class="info"><span class="num">3</span><p data-i18n="pv.f3">Our billing office can explain every line of your invoice.</p></div>
+      <div class="info"><span class="num">4</span><p data-i18n="pv.f4">Keep your receipts — you may need them for reimbursement.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container faq-grid">
+    <div class="reveal">
+      <span class="eyebrow" data-i18n="faq.eyebrow">FAQ</span>
+      <h2 data-i18n="faq.h">Questions we hear often</h2>
+      <p style="color:var(--muted)" data-i18n="faq.p">Can't find your answer? Call us — a real person will pick up.</p>
+      <a class="btn btn-ghost" href="tel:+9617761776" dir="ltr">+961 7 761776</a>
+    </div>
+    <div class="reveal" id="faqList"></div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="alt">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow" data-i18n="ct.eyebrow">Contact &amp; location</span><h2 data-i18n="ct.h">We're here when you need us</h2></div>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="c-list">
+          <div class="c-item er"><span class="ci"><svg class="ic" viewBox="0 0 24 24"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg></span><small data-i18n="ct.er.l">Emergency</small><a href="tel:+9617765362">+961 7 765362</a><small data-i18n="ct.er">Open 24/7 — walk in any time</small></div>
+          <div class="c-item"><span class="ci"><svg class="ic" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span><small data-i18n="ct.phone.l">Reception &amp; appointments</small><a href="tel:+9617761776">+961 7 761776</a></div>
+          <div class="c-item"><span class="ci"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><small data-i18n="ct.addr.l">Address</small><b data-i18n="ct.addr">Khalet Al-Hawa, Nabatieh, South Lebanon</b></div>
+          <div class="c-item"><span class="ci"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><small data-i18n="ct.email.l">Email</small><a href="mailto:info@hekmehhospital.com">info@hekmehhospital.com</a></div>
+        </div>
+        <div class="map">
+          <iframe title="Map — Hekmeh Hospital, Nabatieh" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Hekmeh%20Hospital%20Nabatieh&z=14&output=embed"></iframe>
+        </div>
+      </div>
+      <div class="form-card reveal">
+        <h3 data-i18n="ct.form.h">Send us a message</h3>
+        <form id="contactForm" novalidate>
+          <div class="row2">
+            <div class="field"><label for="cName" data-i18n="f.name">Full name</label><input id="cName" required autocomplete="name"><span class="err" data-i18n="err.name">Please enter your full name.</span></div>
+            <div class="field"><label for="cPhone" data-i18n="f.phone">Phone number</label><input id="cPhone" type="tel" required autocomplete="tel" dir="ltr" placeholder="+961 …"><span class="err" data-i18n="err.phone">Please enter a valid phone number.</span></div>
+          </div>
+          <div class="field"><label for="cTopic" data-i18n="f.topic">Topic</label>
+            <select id="cTopic">
+              <option data-i18n="f.t1">General question</option>
+              <option data-i18n="f.t2">Appointments</option>
+              <option data-i18n="f.t3">Insurance &amp; billing</option>
+              <option data-i18n="f.t4">Feedback</option>
+            </select>
+          </div>
+          <div class="field"><label for="cMsg" data-i18n="f.msg">How can we help?</label><textarea id="cMsg"></textarea></div>
+          <button class="btn btn-primary" style="width:100%" type="submit"><span data-i18n="f.send">Send message</span></button>
+          <div class="success" id="contactOk" hidden><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="f.sent">Design preview: this message wasn't sent. Please call +961 7 761776.</span></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="f-grid">
+      <div>
+        <a href="#top" class="logo"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span><span class="logo-name" data-i18n="brand">Hekmeh Hospital</span></a>
+        <p class="about" data-i18n="ft.about">A licensed private general hospital serving Nabatieh and South Lebanon since 1980.</p>
+        <div class="social">
+          <a href="#" aria-label="Facebook"><svg class="ic" viewBox="0 0 24 24"><path d="M15 3h-2a4 4 0 0 0-4 4v3H7v4h2v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h2z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
+          <a href="https://wa.me/9617761776" aria-label="WhatsApp"><svg class="ic" viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9.5c.5 2 2.5 4 4.5 4.5l1-1.2 2 .8c-.3 1.2-1.3 1.9-2.4 1.6A7 7 0 0 1 8.4 10c-.3-1.1.4-2.1 1.6-2.4l.8 2z"/></svg></a>
+        </div>
+      </div>
+      <div><h4 data-i18n="ft.quick">Quick links</h4><ul>
+        <li><a href="#" data-book data-i18n="cta.book">Book appointment</a></li>
+        <li><a href="#doctors" data-i18n="qa.doc.t">Find a doctor</a></li>
+        <li><a href="#" data-open="labModal" data-i18n="qa.lab.t">Lab results</a></li>
+        <li><a href="#patients" data-i18n="nav.pat">Patients &amp; Visitors</a></li>
+      </ul></div>
+      <div><h4 data-i18n="ft.care">Care</h4><ul id="ftDeps"></ul></div>
+      <div><h4 data-i18n="ft.contact">Contact</h4><ul>
+        <li><a href="tel:+9617765362" dir="ltr">+961 7 765362</a></li>
+        <li><a href="tel:+9617761776" dir="ltr">+961 7 761776</a></li>
+        <li><a href="mailto:info@hekmehhospital.com">info@hekmehhospital.com</a></li>
+        <li data-i18n="ct.addr">Khalet Al-Hawa, Nabatieh, South Lebanon</li>
+      </ul></div>
+    </div>
+    <div class="f-bottom"><span data-i18n="ft.rights">© 2026 Hekmeh Hospital. All rights reserved.</span><div><a href="#" data-i18n="ft.privacy">Privacy</a><a href="#" data-i18n="ft.access">Accessibility</a></div></div>
+  </div>
+</footer>
+
+<!-- Mobile action bar -->
+<nav class="mbar" aria-label="Quick actions">
+  <a class="m-er" href="tel:+9617765362"><svg class="ic" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span data-i18n="mb.call">Call ER</span></a>
+  <button class="m-book" data-book><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span data-i18n="mb.book">Book appointment</span></button>
+  <a class="m-dir" href="https://www.google.com/maps/search/?api=1&query=Hekmeh+Hospital+Nabatieh" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24"><path d="M3 11l18-8-8 18-2-8z"/></svg><span data-i18n="mb.dir">Directions</span></a>
+</nav>
+
+<!-- Booking modal -->
+<div class="modal" id="bookModal" aria-hidden="true">
+  <div class="scrim" data-close></div>
+  <div class="box" role="dialog" aria-modal="true" aria-labelledby="bkTitle">
+    <div class="m-head">
+      <h2 id="bkTitle" data-i18n="bk.title">Book an appointment</h2>
+      <button class="icon-btn" data-close aria-label="Close"><svg class="ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="steps" id="bkSteps">
+      <div class="step"><span data-i18n="bk.s1">Department</span></div>
+      <div class="step"><span data-i18n="bk.s2">Doctor</span></div>
+      <div class="step"><span data-i18n="bk.s3">Date &amp; time</span></div>
+      <div class="step"><span data-i18n="bk.s4">Your details</span></div>
+    </div>
+    <div class="m-body" id="bkBody"></div>
+    <div class="m-foot" id="bkFoot">
+      <button class="btn btn-ghost" id="bkBack"><span data-i18n="bk.back">Back</span></button>
+      <button class="btn btn-primary" id="bkNext"><span data-i18n="bk.next">Continue</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- Lab modal -->
+<div class="modal" id="labModal" aria-hidden="true">
+  <div class="scrim" data-close></div>
+  <div class="box" role="dialog" aria-modal="true" aria-labelledby="labTitle">
+    <div class="m-head">
+      <h2 id="labTitle" data-i18n="lab.h">Request lab results</h2>
+      <button class="icon-btn" data-close aria-label="Close"><svg class="ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="m-body">
+      <form id="labForm" novalidate>
+        <p style="color:var(--muted);margin-top:0" data-i18n="lab.p">Enter your file number and the phone number registered with us. We'll send your results by SMS or WhatsApp.</p>
+        <div class="field"><label for="labFile" data-i18n="lab.file">File number</label><input id="labFile" required inputmode="numeric" dir="ltr"><span class="err" data-i18n="err.file">Please enter your file number.</span></div>
+        <div class="field"><label for="labPhone" data-i18n="f.phone">Phone number</label><input id="labPhone" type="tel" required dir="ltr" placeholder="+961 …"><span class="err" data-i18n="err.phone">Please enter a valid phone number.</span></div>
+        <button class="btn btn-primary" style="width:100%" type="submit"><span data-i18n="lab.send">Send my results</span></button>
+        <div class="success" id="labOk" hidden><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg><span data-i18n="lab.ok">Design preview: nothing was sent. For your results, please call +961 7 761776 or visit the lab reception.</span></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Department sheet -->
+<div class="side" id="depSheet" aria-hidden="true">
+  <div class="scrim" data-close></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="dsTitle" id="dsInner"></div>
+</div>
+
+<script>
+/* ---------- Icons ---------- */
+const ICON = {
+  emergency:'<path d="M3 12h4l2-5 4 10 2-5h6"/>',
+  surgery:'<path d="M14 4l6 6-9.5 9.5a2.1 2.1 0 0 1-3 0l-3-3a2.1 2.1 0 0 1 0-3z"/><path d="M11 7l6 6"/>',
+  maternity:'<circle cx="12" cy="6" r="3"/><path d="M7 21v-5a5 5 0 0 1 10 0v5M9.5 15.5c1.5 1 3.5 1 5 0"/>',
+  icu:'<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M6 11h3l1.5-3 3 6 1.5-3h3M9 21h6M12 17v4"/>',
+  imaging:'<path d="M3 8V5a2 2 0 0 1 2-2h3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3"/><circle cx="12" cy="12" r="4"/>',
+  lab:'<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3M7.5 15h9"/>',
+  outpatient:'<path d="M6 3v6a4 4 0 0 0 8 0V3M10 13v3a5 5 0 0 0 10 0v-3"/><circle cx="20" cy="11" r="2"/>',
+  pharmacy:'<path d="M10.5 20.5a5 5 0 0 1-7-7l10-10a5 5 0 0 1 7 7z"/><path d="M8.5 8.5l7 7"/>',
+  check:'<path d="M5 12l5 5 9-10"/>',
+  arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',
+  close:'<path d="M6 6l12 12M18 6L6 18"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  any:'<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20a6 6 0 0 1 12 0M14 20a4.5 4.5 0 0 1 7.5-3.4"/>',
+  info:'<circle cx="12" cy="12" r="9"/><path d="M12 8v.01M11 12h1v5h1"/>'
+};
+const ic = (k, cls='ic') => `<svg class="${cls}" viewBox="0 0 24 24">${ICON[k]}</svg>`;
+
+/* ---------- Data ---------- */
+const DEPTS = [
+  {id:'emergency', bookable:false, en:['Emergency & Trauma','Immediate care for injuries and acute illness, every hour of every day.'], ar:['الطوارئ والإصابات','رعاية فورية للإصابات والحالات الحادة، في كل ساعة من كل يوم.'],
+   svc:{en:['24/7 triage and resuscitation','Trauma and fracture care','Ambulance reception','Direct link to ICU and theatre'],ar:['فرز وإنعاش على مدار الساعة','علاج الإصابات والكسور','استقبال سيارات الإسعاف','ربط مباشر بالعناية الفائقة وغرف العمليات']}},
+  {id:'surgery', bookable:true, en:['General Surgery','Modern operating theatres for planned and emergency procedures.'], ar:['الجراحة العامة','غرف عمليات حديثة للعمليات المبرمجة والطارئة.'],
+   svc:{en:['Laparoscopic (keyhole) surgery','Hernia, gallbladder and appendix','Day-case procedures','Pre- and post-operative follow-up'],ar:['الجراحة بالمنظار','الفتق والمرارة والزائدة','عمليات اليوم الواحد','متابعة قبل العملية وبعدها']}},
+  {id:'maternity', bookable:true, en:['Maternity & Neonatal','Gentle, safe care for mothers and newborns from pregnancy to delivery.'], ar:['التوليد وحديثو الولادة','رعاية آمنة ولطيفة للأم والمولود من الحمل حتى الولادة.'],
+   svc:{en:['Pregnancy follow-up','Natural and caesarean delivery','Neonatal care unit','Breastfeeding support'],ar:['متابعة الحمل','الولادة الطبيعية والقيصرية','وحدة رعاية حديثي الولادة','دعم الرضاعة الطبيعية']}},
+  {id:'icu', bookable:false, en:['Intensive Care Unit','Continuous monitoring and critical care by a dedicated team.'], ar:['العناية الفائقة','مراقبة مستمرة ورعاية حرجة من فريق متخصص.'],
+   svc:{en:['24/7 bedside monitoring','Mechanical ventilation','Post-surgical intensive care','Family updates every day'],ar:['مراقبة على مدار الساعة','التنفس الاصطناعي','عناية مركّزة بعد العمليات','إطلاع العائلة يومياً']}},
+  {id:'imaging', bookable:true, en:['Medical Imaging','Fast, accurate imaging to guide your diagnosis and treatment.'], ar:['التصوير الطبي','تصوير سريع ودقيق يوجّه التشخيص والعلاج.'],
+   svc:{en:['Digital X-ray','Ultrasound & Doppler','CT scan','Results shared with your doctor'],ar:['الأشعة الرقمية','الصدى والدوبلر','التصوير الطبقي المحوري','إرسال النتائج إلى طبيبك']}},
+  {id:'lab', bookable:true, en:['Laboratory & Diagnostics','A full-service lab with quick turnaround on routine and urgent tests.'], ar:['المختبر والتشخيص','مختبر متكامل بنتائج سريعة للفحوصات الروتينية والطارئة.'],
+   svc:{en:['Blood tests and full panels','Hormones and markers','Microbiology','Results by SMS or WhatsApp'],ar:['فحوصات الدم الشاملة','الهرمونات والمؤشرات','الأحياء الدقيقة','النتائج عبر الرسائل أو واتساب']}},
+  {id:'outpatient', bookable:true, en:['Outpatient Clinics','Specialist consultations without a hospital stay.'], ar:['العيادات الخارجية','استشارات اختصاصية من دون الحاجة إلى الدخول.'],
+   svc:{en:['Internal medicine','Cardiology','Pediatrics','Follow-up visits'],ar:['الطب الداخلي','أمراض القلب','طب الأطفال','زيارات المتابعة']}},
+  {id:'pharmacy', bookable:false, en:['Pharmacy','In-house pharmacy for inpatients and discharge prescriptions.'], ar:['الصيدلية','صيدلية داخلية للمرضى المقيمين ووصفات الخروج.'],
+   svc:{en:['Inpatient medication','Discharge prescriptions','Pharmacist counselling','Guarantor-covered medicines'],ar:['أدوية المرضى المقيمين','وصفات الخروج','استشارة الصيدلي','أدوية مغطاة من الجهات الضامنة']}}
+];
+// Sample doctor profiles — replace with the hospital's real medical staff
+const DOCS = [
+  {id:1, dep:'emergency', en:['Dr. Ali Jaber','Emergency Medicine'], ar:['د. علي جابر','طب الطوارئ'], days:[1,2,3,4,5,6], c:['#ef4444','#f97316']},
+  {id:2, dep:'surgery', en:['Dr. Rana Haidar','General & Laparoscopic Surgery'], ar:['د. رنا حيدر','الجراحة العامة والمنظار'], days:[1,3,5], c:['#0f766e','#14b8a6']},
+  {id:3, dep:'surgery', en:['Dr. Hassan Fakih','General Surgery'], ar:['د. حسن فقيه','الجراحة العامة'], days:[2,4,6], c:['#0e7490','#22d3ee']},
+  {id:4, dep:'maternity', en:['Dr. Zeinab Mroueh','Obstetrics & Gynecology'], ar:['د. زينب مروّة','التوليد وأمراض النساء'], days:[1,2,4], c:['#db2777','#f472b6']},
+  {id:5, dep:'maternity', en:['Dr. Mohammad Sabbagh','Pediatrics & Neonatology'], ar:['د. محمد صباغ','طب الأطفال وحديثي الولادة'], days:[2,3,5,6], c:['#7c3aed','#a78bfa']},
+  {id:6, dep:'icu', en:['Dr. Layal Kanso','Critical Care'], ar:['د. ليال قانصو','العناية الفائقة'], days:[1,2,3,4,5], c:['#1d4ed8','#60a5fa']},
+  {id:7, dep:'imaging', en:['Dr. Karim Ayoub','Radiology'], ar:['د. كريم أيوب','الأشعة'], days:[1,2,3,4,5,6], c:['#0f766e','#5eead4']},
+  {id:8, dep:'lab', en:['Dr. Hiba Shour','Clinical Pathology'], ar:['د. هبة شور','علم الأمراض السريري'], days:[1,2,3,4,5,6], c:['#b45309','#fbbf24']},
+  {id:9, dep:'outpatient', en:['Dr. Nour Bazzi','Internal Medicine'], ar:['د. نور بزي','الطب الداخلي'], days:[1,3,4], c:['#065f46','#34d399']},
+  {id:10, dep:'outpatient', en:['Dr. Samir Wehbe','Cardiology'], ar:['د. سمير وهبي','أمراض القلب'], days:[2,5], c:['#be123c','#fb7185']}
+];
+const GUARANTORS = {
+  en:['NSSF (Social Security)','Lebanese Army','Internal Security Forces','General Security','State Security','Civil Servants Cooperative','Ministry of Public Health','Private insurance'],
+  ar:['الضمان الاجتماعي','الجيش اللبناني','قوى الأمن الداخلي','الأمن العام','أمن الدولة','تعاونية موظفي الدولة','وزارة الصحة العامة','التأمين الخاص']
+};
+const FAQS = {
+  en:[
+    ['Do I need an appointment for the emergency department?','No. The emergency department is open 24 hours a day, 7 days a week. Come directly or call +961 7 765362.'],
+    ['Which guarantors do you accept?','All official guarantors — including NSSF, the Army, the security forces, the Civil Servants Cooperative and the Ministry of Public Health — plus most private insurers.'],
+    ['How do I get my lab results?','Request them online with your file number and we will send them to your phone, or collect them from the laboratory reception with your ID.'],
+    ['Can I change or cancel my appointment?','Yes. Call us at least 24 hours before and we will find you a new time.'],
+    ['Do you have a maternity ward?','Yes. Our maternity and neonatal unit supports you from pregnancy follow-up through delivery and newborn care.']
+  ],
+  ar:[
+    ['هل أحتاج إلى موعد لقسم الطوارئ؟','لا. قسم الطوارئ مفتوح ٢٤ ساعة يومياً، ٧ أيام في الأسبوع. تعال مباشرة أو اتصل على 765362 7 961+.'],
+    ['ما هي الجهات الضامنة التي تقبلونها؟','جميع الجهات الضامنة الرسمية، بما فيها الضمان الاجتماعي والجيش والقوى الأمنية وتعاونية موظفي الدولة ووزارة الصحة العامة، إضافة إلى معظم شركات التأمين الخاصة.'],
+    ['كيف أحصل على نتائج المختبر؟','اطلبها أونلاين برقم ملفك وسنرسلها إلى هاتفك، أو استلمها من استقبال المختبر مع هويتك.'],
+    ['هل يمكنني تعديل موعدي أو إلغاؤه؟','نعم، اتصل بنا قبل ٢٤ ساعة على الأقل وسنجد لك موعداً جديداً.'],
+    ['هل يوجد قسم توليد؟','نعم. يرافقك قسم التوليد وحديثي الولادة من متابعة الحمل حتى الولادة ورعاية المولود.']
+  ]
+};
+
+/* ---------- i18n ---------- */
+const AR = {
+  'skip':'انتقل إلى المحتوى','concept':'تصميم تجريبي من إعداد فاضل حلال — ليس الموقع الرسمي لمستشفى الحكمة. النماذج في هذه الصفحة لا تُرسل أي بيانات؛ للحجز اتصل على','tb.er':'الطوارئ ٢٤/٧','tb.loc':'خلة الهوا، النبطية',
+  'brand':'مستشفى الحكمة','brand.tag':'النبطية · منذ ١٩٨٠',
+  'nav.dep':'الأقسام','nav.doc':'الأطباء','nav.pat':'المرضى والزوار','nav.ins':'الجهات الضامنة','nav.contact':'اتصل بنا','cta.book':'احجز موعداً',
+  'hero.badge':'قسم الطوارئ مفتوح الآن','hero.h':'نرعى أهل الجنوب <em>منذ أكثر من ٤٥ عاماً</em>',
+  'hero.p':'مستشفى عام مرخّص في النبطية، يقدّم طوارئ على مدار الساعة، وتشخيصاً حديثاً، وأطباء اختصاص موثوقين — ومتعاقد مع جميع الجهات الضامنة الرسمية.',
+  'hero.call':'اتصل بالطوارئ','hero.trust1':'مرخّص من وزارة الصحة العامة','hero.trust2':'نقبل جميع الجهات الضامنة',
+  'fc.er':'الطوارئ','fc.open':'مفتوح ٢٤/٧','fc.since':'في خدمتكم منذ','fc.book':'احجز أونلاين','fc.fast':'بأقل من دقيقة',
+  'qa.book.t':'احجز موعداً','qa.book.d':'اختر العيادة والطبيب والوقت','qa.doc.t':'ابحث عن طبيب','qa.doc.d':'بالاسم أو الاختصاص',
+  'qa.lab.t':'نتائج المختبر','qa.lab.d':'اطلب نتائجك بأمان','qa.dir.t':'الاتجاهات','qa.dir.d':'خلة الهوا، النبطية',
+  'dep.eyebrow':'أقسامنا','dep.h':'رعاية متكاملة تحت سقف واحد','dep.p':'من الفحص الأول إلى الجراحة والتعافي، تعمل جميع الاختصاصات معاً من أجلك.',
+  'why.eyebrow':'لماذا الحكمة','why.h':'قريب منك. جادّ في رعايتك.',
+  'why1.t':'طوارئ لا تُغلق أبداً','why1.d':'قسم طوارئ وعناية فائقة وغرف عمليات مجهّزة بالكامل، جاهزة ليلاً نهاراً.',
+  'why2.t':'لا مفاجآت في المعاملات','why2.d':'متعاقدون مع الضمان الاجتماعي والجيش والقوى الأمنية وتعاونية الموظفين وشركات التأمين الخاصة.',
+  'why3.t':'مستشفى العائلة منذ ١٩٨٠','why3.d':'أجيال من عائلات الجنوب وثقت بنا لرعايتها.',
+  'st.years':'عاماً من الرعاية','st.er':'طوارئ كل يوم','st.dep':'أقسام رئيسية','st.all':'الكل','st.g':'الجهات الضامنة الرسمية مقبولة',
+  'doc.eyebrow':'أطباؤنا','doc.h':'اعثر على الاختصاصي المناسب','doc.search':'ابحث عن طبيب أو اختصاص…',
+  'ins.eyebrow':'التأمين والجهات الضامنة','ins.h':'تغطيتك مقبولة هنا',
+  'ins.p':'مستشفى الحكمة متعاقد مع جميع الجهات الضامنة الرسمية وكبرى شركات التأمين الخاصة. أحضر بطاقتك وهويتك، وفريق الدخول يتولى الباقي.',
+  'ins.q':'غير متأكد من تغطيتك؟','ins.qa':'اسأل قسم الدخول',
+  'pv.eyebrow':'المرضى والزوار','pv.h':'كل ما تحتاجه قبل وصولك','pv.t1':'الدخول','pv.t2':'الزيارة','pv.t3':'ماذا تحضر','pv.t4':'الفواتير',
+  'pv.a1':'توجّه إلى مكتب الدخول في الطابق الأرضي مع هويتك وبطاقة الجهة الضامنة.','pv.a2':'للعمليات المبرمجة، يتصل بك فريقنا قبل يوم مع تعليمات الصيام.',
+  'pv.a3':'مرضى الطوارئ يُعالَجون أولاً، والمعاملات تأتي لاحقاً.','pv.a4':'لديك أسئلة قبل الحضور؟ اتصل بقسم الدخول على 761776 7 961+.',
+  'pv.v1':'الأقسام العامة: 11:00 – 13:00 و 16:00 – 20:00 يومياً.','pv.v2':'العناية الفائقة وحديثو الولادة: فرد واحد من العائلة في كل مرة، بالتنسيق مع الممرض المسؤول.',
+  'pv.v3':'نرجو أن تكون الزيارات قصيرة، وتجنّب الزيارة إذا كنت تعاني من حرارة أو رشح.','pv.v4':'يُسمح بزيارة الأطفال دون ١٢ عاماً برفقة شخص بالغ فقط.',
+  'pv.b1':'بطاقة الهوية أو جواز السفر','pv.b2':'بطاقة الجهة الضامنة أو التأمين وأي تحويل طبي','pv.b3':'أدويتك الحالية ونتائج الفحوصات الأخيرة','pv.b4':'ملابس مريحة وأدوات العناية الشخصية',
+  'pv.f1':'نرسل الفاتورة مباشرة إلى جهتك الضامنة، وتدفع حصتك فقط.','pv.f2':'اطلب تقديراً للكلفة قبل أي إجراء مبرمج.','pv.f3':'مكتب المحاسبة جاهز لشرح كل بند في فاتورتك.','pv.f4':'احتفظ بالإيصالات، فقد تحتاجها لاسترداد المبالغ.',
+  'faq.eyebrow':'أسئلة شائعة','faq.h':'أسئلة نسمعها كثيراً','faq.p':'لم تجد جوابك؟ اتصل بنا، وسيجيبك شخص حقيقي.',
+  'ct.eyebrow':'التواصل والموقع','ct.h':'نحن هنا عندما تحتاجنا','ct.er.l':'الطوارئ','ct.er':'مفتوح ٢٤/٧، تعال في أي وقت','ct.phone.l':'الاستقبال والمواعيد',
+  'ct.addr.l':'العنوان','ct.addr':'خلة الهوا، النبطية، جنوب لبنان','ct.email.l':'البريد الإلكتروني','ct.form.h':'أرسل لنا رسالة',
+  'f.name':'الاسم الكامل','f.phone':'رقم الهاتف','f.topic':'الموضوع','f.t1':'سؤال عام','f.t2':'المواعيد','f.t3':'التأمين والفواتير','f.t4':'ملاحظات واقتراحات',
+  'f.msg':'كيف يمكننا مساعدتك؟','f.send':'إرسال الرسالة','f.sent':'نسخة تجريبية: لم تُرسل هذه الرسالة. يرجى الاتصال على 761776 7 961+.',
+  'err.name':'يرجى إدخال الاسم الكامل.','err.phone':'يرجى إدخال رقم هاتف صحيح.','err.file':'يرجى إدخال رقم الملف.',
+  'ft.about':'مستشفى خاص عام مرخّص يخدم النبطية والجنوب اللبناني منذ ١٩٨٠.','ft.quick':'روابط سريعة','ft.care':'الرعاية','ft.contact':'تواصل',
+  'ft.rights':'© 2026 مستشفى الحكمة. جميع الحقوق محفوظة.','ft.privacy':'الخصوصية','ft.access':'سهولة الوصول',
+  'mb.call':'الطوارئ','mb.book':'احجز موعداً','mb.dir':'الموقع',
+  'bk.title':'احجز موعداً','bk.s1':'القسم','bk.s2':'الطبيب','bk.s3':'التاريخ والوقت','bk.s4':'معلوماتك','bk.back':'رجوع','bk.next':'متابعة',
+  'lab.h':'طلب نتائج المختبر','lab.p':'أدخل رقم ملفك ورقم الهاتف المسجّل لدينا، وسنرسل نتائجك عبر الرسائل النصية أو واتساب.','lab.file':'رقم الملف','lab.send':'أرسل نتائجي',
+  'lab.ok':'نسخة تجريبية: لم يتم إرسال أي طلب. للحصول على نتائجك اتصل على 761776 7 961+ أو راجع استقبال المختبر.'
+};
+const T = {
+  en:{more:'Learn more',all:'All',book:'Book',empty:'No doctors match your search.',svc:'What we offer',docs:'Our doctors',bookDep:'Book with this department',
+      erNow:'Come directly — no appointment needed',call:'Call emergency',q1:'Which department do you need?',q2:'Choose your doctor',any:'First available doctor',anyD:'Earliest open slot',
+      q3:'Pick a date and time',q4:'Tell us about you',guar:'Guarantor',notes:'Reason for visit (optional)',confirm:'Confirm booking',
+      erNote:'For an emergency, don’t book — come straight to the ER or call +961 7 765362.',okH:'Preview complete',okP:'This is a design preview, so no appointment was made. To book this slot, please call +961 7 761776.',
+      ref:'Reference',sample:'Sample profile',callBook:'Call to book',done:'Done',sum:{dep:'Department',doc:'Doctor',when:'When'},noTime:'Please choose a time.',name:'Full name',phone:'Phone number',open:'Open 24/7',
+      days:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],locale:'en-GB'},
+  ar:{more:'اعرف المزيد',all:'الكل',book:'احجز',empty:'لا يوجد أطباء يطابقون بحثك.',svc:'ما نقدّمه',docs:'أطباؤنا',bookDep:'احجز في هذا القسم',
+      erNow:'تعال مباشرة — لا حاجة لموعد',call:'اتصل بالطوارئ',q1:'أي قسم تحتاج؟',q2:'اختر طبيبك',any:'أول طبيب متاح',anyD:'أقرب موعد متاح',
+      q3:'اختر التاريخ والوقت',q4:'أخبرنا عنك',guar:'الجهة الضامنة',notes:'سبب الزيارة (اختياري)',confirm:'تأكيد الحجز',
+      erNote:'في الحالات الطارئة لا تحجز — توجّه مباشرة إلى الطوارئ أو اتصل على 765362 7 961+.',okH:'انتهت المعاينة',okP:'هذه نسخة تجريبية من التصميم، لذلك لم يتم حجز أي موعد. لحجز هذا الموعد يرجى الاتصال على 761776 7 961+.',
+      ref:'رقم المرجع',sample:'ملف تجريبي',callBook:'اتصل للحجز',done:'تم',sum:{dep:'القسم',doc:'الطبيب',when:'الموعد'},noTime:'يرجى اختيار الوقت.',name:'الاسم الكامل',phone:'رقم الهاتف',open:'مفتوح ٢٤/٧',
+      days:['أحد','اثنين','ثلاثاء','أربعاء','خميس','جمعة','سبت'],locale:'ar-LB'}
+};
+let lang = 'en';
+try{ lang = localStorage.getItem('hk-lang') || 'en'; }catch(e){}
+const t = k => T[lang][k];
+const L = obj => obj[lang];
+
+document.querySelectorAll('[data-i18n]').forEach(el => el.dataset.en = el.innerHTML);
+document.querySelectorAll('[data-i18n-ph]').forEach(el => el.dataset.enPh = el.placeholder);
+
+function applyLang(){
+  const html = document.documentElement;
+  html.lang = lang; html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.dataset.i18n;
+    el.innerHTML = lang === 'ar' && AR[k] ? AR[k] : el.dataset.en;
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    el.placeholder = lang === 'ar' ? AR[el.dataset.i18nPh] : el.dataset.enPh;
+  });
+  document.getElementById('langLabel').textContent = lang === 'ar' ? 'English' : 'العربية';
+  document.title = lang === 'ar' ? 'مستشفى الحكمة — النبطية' : 'Hekmeh Hospital';
+  renderAll();
+  if (bk.open) renderStep();
+}
+document.getElementById('langBtn').onclick = () => {
+  lang = lang === 'en' ? 'ar' : 'en';
+  try{ localStorage.setItem('hk-lang', lang); }catch(e){}
+  applyLang();
+};
+
+/* ---------- Theme & text size ---------- */
+const root = document.documentElement;
+try{ const th = localStorage.getItem('hk-theme'); if (th) root.dataset.theme = th; }catch(e){}
+document.getElementById('themeBtn').onclick = () => {
+  const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  root.dataset.theme = dark ? 'light' : 'dark';
+  try{ localStorage.setItem('hk-theme', root.dataset.theme); }catch(e){}
+};
+let fs = 100;
+try{ fs = +localStorage.getItem('hk-fs') || 100; }catch(e){}
+root.style.fontSize = fs + '%';
+document.querySelectorAll('[data-size]').forEach(b => b.onclick = () => {
+  fs = Math.min(130, Math.max(90, fs + (+b.dataset.size) * 10));
+  root.style.fontSize = fs + '%';
+  try{ localStorage.setItem('hk-fs', fs); }catch(e){}
+});
+
+/* ---------- Render sections ---------- */
+const initials = d => d.en[0].replace('Dr. ','').split(' ').map(s=>s[0]).join('');
+const avatar = (d, extra='') => `<span class="avatar" style="background:linear-gradient(135deg,${d.c[0]},${d.c[1]});${extra}">${initials(d)}</span>`;
+const depById = id => DEPTS.find(d => d.id === id);
+
+function renderDeps(){
+  document.getElementById('depGrid').innerHTML = DEPTS.map((d,i) => `
+    <button class="dep reveal ${d.id==='emergency'?'er':''}" data-dep="${d.id}" style="transition-delay:${(i%4)*60}ms">
+      ${d.id==='emergency'||d.id==='icu' ? `<span class="tag-247">24/7</span>`:''}
+      <span class="di">${ic(d.id)}</span>
+      <h3>${L(d)[0]}</h3><p>${L(d)[1]}</p>
+      <span class="more">${t('more')} ${ic('arrow')}</span>
+    </button>`).join('');
+  document.getElementById('ftDeps').innerHTML = DEPTS.slice(0,6).map(d => `<li><a href="#" data-dep="${d.id}">${L(d)[0]}</a></li>`).join('');
+}
+
+let docFilter = 'all', docQuery = '';
+function renderChips(){
+  const ids = ['all', ...new Set(DOCS.map(d=>d.dep))];
+  document.getElementById('docChips').innerHTML = ids.map(id =>
+    `<button class="chip" data-filter="${id}" aria-pressed="${docFilter===id}">${id==='all'?t('all'):L(depById(id))[0]}</button>`).join('');
+}
+function renderDocs(){
+  const q = docQuery.trim().toLowerCase();
+  const list = DOCS.filter(d => (docFilter==='all' || d.dep===docFilter) &&
+    (!q || [...d.en, ...d.ar, ...depById(d.dep).en, ...depById(d.dep).ar].join(' ').toLowerCase().includes(q)));
+  const order = [1,2,3,4,5,6];
+  document.getElementById('docGrid').innerHTML = list.length ? list.map(d => `
+    <article class="doc">
+      <span class="sample">${t('sample')}</span><div class="doc-top">${avatar(d)}<div><h3>${L(d)[0]}</h3><div class="spec">${L(d)[1]}</div></div></div>
+      <div class="days" aria-label="Clinic days">${order.map(n=>`<span class="day ${d.days.includes(n)?'on':''}">${t('days')[n]}</span>`).join('')}</div>
+      ${d.dep==='emergency'
+        ? `<a class="btn btn-er btn-sm" href="tel:+9617765362">${t('call')}</a>`
+        : `<button class="btn btn-primary btn-sm" data-book-doc="${d.id}">${t('book')}</button>`}
+    </article>`).join('') : `<div class="empty">${t('empty')}</div>`;
+}
+function renderGuar(){
+  document.getElementById('gGrid').innerHTML = L(GUARANTORS).map(g => `<div class="g"><span class="gc">${ic('check')}</span>${g}</div>`).join('');
+}
+function renderFaq(){
+  document.getElementById('faqList').innerHTML = L(FAQS).map(([q,a],i) => `
+    <div class="faq"><button aria-expanded="${i===0}" aria-controls="fa${i}">${q}<span class="pm">${ic('plus')}</span></button>
+    <div class="ans" id="fa${i}" role="region"><div><p>${a}</p></div></div></div>`).join('');
+}
+function renderAll(){ renderDeps(); renderChips(); renderDocs(); renderGuar(); renderFaq(); observeReveal(); }
+
+/* ---------- Interactions ---------- */
+document.getElementById('docSearch').addEventListener('input', e => { docQuery = e.target.value; renderDocs(); });
+document.addEventListener('click', e => {
+  const chip = e.target.closest('[data-filter]');
+  if (chip){ docFilter = chip.dataset.filter; renderChips(); renderDocs(); return; }
+  const faqBtn = e.target.closest('.faq button');
+  if (faqBtn){ faqBtn.setAttribute('aria-expanded', faqBtn.getAttribute('aria-expanded') !== 'true'); return; }
+  const depBtn = e.target.closest('[data-dep]');
+  if (depBtn){ e.preventDefault(); openDep(depBtn.dataset.dep); return; }
+  const bd = e.target.closest('[data-book-doc]');
+  if (bd){ const d = DOCS.find(x=>x.id==bd.dataset.bookDoc); openBooking({dep:d.dep, doc:d.id, step:2}); return; }
+  const bdep = e.target.closest('[data-book-dep]');
+  if (bdep){ closeLayer(document.getElementById('depSheet')); openBooking({dep:bdep.dataset.bookDep, step:1}); return; }
+  const b = e.target.closest('[data-book]');
+  if (b){ e.preventDefault(); closeLayer(document.getElementById('drawerNav')); openBooking(); return; }
+  const o = e.target.closest('[data-open]');
+  if (o){ e.preventDefault(); openLayer(document.getElementById(o.dataset.open)); return; }
+  const fs = e.target.closest('[data-focus-search]');
+  if (fs){ setTimeout(()=>document.getElementById('docSearch').focus({preventScroll:true}), 500); }
+  if (e.target.closest('[data-close]')){ closeLayer(e.target.closest('.modal,.side,.drawer-nav')); }
+  if (e.target.closest('.drawer-nav a.link')) closeLayer(document.getElementById('drawerNav'));
+});
+
+/* Layers (modals, drawers) with focus management */
+let lastFocus = null;
+function openLayer(el){
+  lastFocus = document.activeElement;
+  el.classList.add('open'); el.setAttribute('aria-hidden','false'); document.body.classList.add('lock');
+  setTimeout(()=>{ const f = el.querySelector('input,button:not([data-close]),[href]'); f && f.focus({preventScroll:true}); }, 60);
+}
+function closeLayer(el){
+  if (!el || !el.classList.contains('open')) return;
+  el.classList.remove('open'); el.setAttribute('aria-hidden','true');
+  if (!document.querySelector('.modal.open,.side.open,.drawer-nav.open')) document.body.classList.remove('lock');
+  if (el.id === 'bookModal') bk.open = false;
+  if (el.id === 'drawerNav') document.getElementById('menuBtn').setAttribute('aria-expanded','false');
+  lastFocus && lastFocus.focus && lastFocus.focus({preventScroll:true});
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape'){ const top = [...document.querySelectorAll('.modal.open,.side.open,.drawer-nav.open')].pop(); closeLayer(top); }
+  if (e.key === 'Tab'){
+    const top = [...document.querySelectorAll('.modal.open,.side.open,.drawer-nav.open')].pop();
+    if (!top) return;
+    const f = [...top.querySelectorAll('button,[href],input,select,textarea')].filter(x=>!x.disabled && x.offsetParent!==null);
+    if (!f.length) return;
+    if (e.shiftKey && document.activeElement === f[0]){ e.preventDefault(); f[f.length-1].focus(); }
+    else if (!e.shiftKey && document.activeElement === f[f.length-1]){ e.preventDefault(); f[0].focus(); }
+  }
+});
+document.getElementById('menuBtn').onclick = e => { e.currentTarget.setAttribute('aria-expanded','true'); openLayer(document.getElementById('drawerNav')); };
+
+/* Tabs */
+const tabs = [...document.querySelectorAll('[role="tab"]')];
+function selectTab(tab){
+  tabs.forEach(x => { const on = x===tab; x.setAttribute('aria-selected',on); x.tabIndex = on?0:-1; document.getElementById(x.getAttribute('aria-controls')).hidden = !on; });
+  tab.focus();
+}
+tabs.forEach((tab,i) => {
+  tab.onclick = () => selectTab(tab);
+  tab.onkeydown = e => {
+    const dir = (e.key==='ArrowRight') ^ (document.dir==='rtl') ? 1 : -1;
+    if (e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); selectTab(tabs[(i+dir+tabs.length)%tabs.length]); }
+  };
+});
+
+/* Department sheet */
+function openDep(id){
+  const d = depById(id), docs = DOCS.filter(x=>x.dep===id);
+  document.getElementById('dsInner').innerHTML = `
+    <div class="sheet-hero" ${id==='emergency'?'style="background:linear-gradient(150deg,#dc2626,#7f1d1d)"':''}>
+      <button class="icon-btn" data-close aria-label="Close">${ic('close')}</button>
+      <div class="di">${ic(id)}</div>
+      <h2 id="dsTitle">${L(d)[0]}</h2><p>${L(d)[1]}</p>
+    </div>
+    <div class="sheet-body">
+      <div><h4>${t('svc')}</h4><ul class="svc">${L(d.svc).map(s=>`<li>${ic('check')}${s}</li>`).join('')}</ul></div>
+      ${docs.length?`<div><h4>${t('docs')}</h4>${docs.map(x=>`<div class="mini-doc">${avatar(x)}<div><b>${L(x)[0]}</b><div style="color:var(--muted);font-size:.88rem">${L(x)[1]}</div></div></div>`).join('')}</div>`:''}
+    </div>
+    <div class="sheet-foot">${d.bookable
+      ? `<button class="btn btn-primary" data-book-dep="${id}">${t('bookDep')}</button>`
+      : `<a class="btn btn-er" href="tel:+9617765362">${id==='pharmacy'?'+961 7 761776':t('call')}</a>`}</div>`;
+  if (id==='pharmacy') document.querySelector('#dsInner .btn-er').href='tel:+9617761776';
+  openLayer(document.getElementById('depSheet'));
+}
+
+/* ---------- Booking flow ---------- */
+const bk = {open:false, step:0, dep:null, doc:null, date:null, time:null, name:'', phone:'', guar:0, notes:'', ref:''};
+function openBooking(pre={}){
+  Object.assign(bk, {step:0, dep:null, doc:null, date:null, time:null, ref:''}, pre, {open:true});
+  if (pre.step===2 && pre.doc) bk.step = 2;
+  renderStep(); openLayer(document.getElementById('bookModal'));
+}
+function upcomingDays(){
+  const out = [], d = new Date(); d.setHours(0,0,0,0);
+  const doc = DOCS.find(x=>x.id===bk.doc);
+  while (out.length < 12){ d.setDate(d.getDate()+1); const wd = d.getDay(); if (wd===0) continue; if (doc && !doc.days.includes(wd)) continue; out.push(new Date(d)); }
+  return out;
+}
+function slotsFor(date){
+  const s = [], seed = date.getDate() + (bk.doc||0)*7;
+  for (let h=9; h<15; h++) for (const m of [0,30]){ const k = h*2+(m?1:0); s.push({t:`${String(h).padStart(2,'0')}:${m?'30':'00'}`, taken: ((k*13+seed)%5)===0 }); }
+  return s;
+}
+const fmtDate = (d,o) => new Intl.DateTimeFormat(t('locale'), o).format(d);
+function renderStep(){
+  const body = document.getElementById('bkBody'), foot = document.getElementById('bkFoot');
+  document.querySelectorAll('#bkSteps .step').forEach((s,i)=>{ s.className = 'step' + (i<bk.step?' done':'') + (i===bk.step?' cur':''); });
+  document.getElementById('bkSteps').style.display = bk.step===4 ? 'none':'flex';
+  foot.style.display = bk.step===4 ? 'none':'flex';
+  document.getElementById('bkBack').style.visibility = bk.step===0 ? 'hidden':'visible';
+  document.querySelector('#bkNext span').textContent = bk.step===3 ? t('confirm') : (lang==='ar'?AR['bk.next']:'Continue');
+
+  if (bk.step===0){
+    body.innerHTML = `<p class="q">${t('q1')}</p><div class="opt-grid" role="radiogroup">${DEPTS.filter(d=>d.bookable).map(d=>`
+      <button class="opt" role="radio" aria-checked="${bk.dep===d.id}" data-v="${d.id}"><span class="oi">${ic(d.id)}</span>${L(d)[0]}</button>`).join('')}</div>
+      <div class="note">${ic('info')}<span>${t('erNote')}</span></div>`;
+    body.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ if (bk.dep!==b.dataset.v){bk.doc=null;bk.date=null;bk.time=null;} bk.dep=b.dataset.v; bk.step=1; renderStep(); });
+  }
+  if (bk.step===1){
+    const docs = DOCS.filter(d=>d.dep===bk.dep);
+    body.innerHTML = `<p class="q">${t('q2')}</p><div class="opt-grid" role="radiogroup">
+      <button class="opt" role="radio" aria-checked="${bk.doc===0}" data-v="0"><span class="oi">${ic('any')}</span><span>${t('any')}<small>${t('anyD')}</small></span></button>
+      ${docs.map(d=>`<button class="opt" role="radio" aria-checked="${bk.doc===d.id}" data-v="${d.id}">${avatar(d)}<span>${L(d)[0]}<small>${L(d)[1]}</small></span></button>`).join('')}</div>`;
+    body.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ bk.doc=+b.dataset.v; bk.date=null; bk.time=null; bk.step=2; renderStep(); });
+  }
+  if (bk.step===2){
+    const days = upcomingDays();
+    if (!bk.date || !days.some(d=>+d===+bk.date)) bk.date = days[0];
+    const slots = slotsFor(bk.date);
+    body.innerHTML = `<p class="q">${t('q3')}</p>
+      <div class="dates" role="radiogroup">${days.map(d=>`<button class="date" role="radio" aria-checked="${+d===+bk.date}" data-v="${+d}"><small>${fmtDate(d,{weekday:'short'})}</small><b>${d.getDate()}</b><small>${fmtDate(d,{month:'short'})}</small></button>`).join('')}</div>
+      <div class="slots" role="radiogroup">${slots.map(s=>`<button class="slot" role="radio" ${s.taken?'disabled':''} aria-checked="${bk.time===s.t}" data-v="${s.t}" dir="ltr">${s.t}</button>`).join('')}</div>
+      <p class="err-time" style="color:var(--er);font-weight:600;font-size:.88rem" hidden>${t('noTime')}</p>`;
+    body.querySelectorAll('.date').forEach(b=>b.onclick=()=>{ bk.date=new Date(+b.dataset.v); bk.time=null; renderStep(); const el=body.querySelector('.date[aria-checked="true"]'); el&&el.scrollIntoView({block:'nearest',inline:'center'}); });
+    body.querySelectorAll('.slot').forEach(b=>b.onclick=()=>{ bk.time=b.dataset.v; body.querySelectorAll('.slot').forEach(x=>x.setAttribute('aria-checked',x===b)); body.querySelector('.err-time').hidden=true; });
+  }
+  if (bk.step===3){
+    const doc = DOCS.find(x=>x.id===bk.doc);
+    body.innerHTML = `
+      <div class="summary">
+        <div><span>${t('sum').dep}</span><b>${L(depById(bk.dep))[0]}</b></div>
+        <div><span>${t('sum').doc}</span><b>${doc?L(doc)[0]:t('any')}</b></div>
+        <div><span>${t('sum').when}</span><b>${fmtDate(bk.date,{weekday:'long',day:'numeric',month:'long'})} · <span dir="ltr" style="color:inherit">${bk.time}</span></b></div>
+      </div>
+      <p class="q">${t('q4')}</p>
+      <div class="field" id="fName"><label for="bkName">${t('name')}</label><input id="bkName" autocomplete="name" value="${bk.name.replace(/"/g,'&quot;')}"><span class="err">${lang==='ar'?AR['err.name']:'Please enter your full name.'}</span></div>
+      <div class="row2">
+        <div class="field" id="fPhone"><label for="bkPhone">${t('phone')}</label><input id="bkPhone" type="tel" autocomplete="tel" dir="ltr" placeholder="+961 …" value="${bk.phone.replace(/"/g,'&quot;')}"><span class="err">${lang==='ar'?AR['err.phone']:'Please enter a valid phone number.'}</span></div>
+        <div class="field"><label for="bkGuar">${t('guar')}</label><select id="bkGuar">${L(GUARANTORS).map((g,i)=>`<option value="${i}" ${+bk.guar===i?'selected':''}>${g}</option>`).join('')}</select></div>
+      </div>
+      <div class="field"><label for="bkNotes">${t('notes')}</label><textarea id="bkNotes" style="height:80px">${bk.notes.replace(/</g,'&lt;')}</textarea></div>`;
+    ['bkName','bkPhone','bkGuar','bkNotes'].forEach(id=>document.getElementById(id).addEventListener('input',e=>{
+      const k={bkName:'name',bkPhone:'phone',bkGuar:'guar',bkNotes:'notes'}[id]; bk[k]=e.target.value; e.target.closest('.field').classList.remove('invalid'); }));
+  }
+  if (bk.step===4){
+    body.innerHTML = `<div class="done-view"><div class="check">${ic('info')}</div><h2 style="font-size:1.6rem;margin:0 0 6px">${t('okH')}</h2>
+      <p style="color:var(--muted);margin:0 0 14px">${t('okP')}</p>
+      <div class="summary" style="text-align:start">
+        <div><span>${t('sum').dep}</span><b>${L(depById(bk.dep))[0]}</b></div>
+        <div><span>${t('sum').when}</span><b>${fmtDate(bk.date,{weekday:'long',day:'numeric',month:'long'})} · <span dir="ltr" style="color:inherit">${bk.time}</span></b></div>
+      </div>
+      <div style="margin-top:22px;display:grid;gap:10px"><a class="btn btn-primary" href="tel:+9617761776" style="width:100%">${t('callBook')}</a><button class="btn btn-ghost" data-close style="width:100%">${t('done')}</button></div></div>`;
+  }
+}
+const validPhone = v => v.replace(/[^\d]/g,'').length >= 7;
+document.getElementById('bkBack').onclick = () => { if (bk.step>0){ bk.step--; renderStep(); } };
+document.getElementById('bkNext').onclick = () => {
+  if (bk.step===0 && !bk.dep) return;
+  if (bk.step===1 && bk.doc===null) return;
+  if (bk.step===2 && !bk.time){ document.querySelector('.err-time').hidden=false; return; }
+  if (bk.step===3){
+    let ok = true;
+    if (bk.name.trim().length<3){ document.getElementById('fName').classList.add('invalid'); ok=false; }
+    if (!validPhone(bk.phone)){ document.getElementById('fPhone').classList.add('invalid'); ok=false; }
+    if (!ok){ document.querySelector('#bkBody .invalid input').focus(); return; }
+    bk.ref = 'HK-' + Math.random().toString(36).slice(2,7).toUpperCase();
+  }
+  bk.step++; renderStep();
+  document.getElementById('bkBody').scrollTop = 0;
+};
+
+/* Forms */
+function check(field, ok){ field.classList.toggle('invalid', !ok); return ok; }
+document.getElementById('contactForm').onsubmit = e => {
+  e.preventDefault();
+  const a = check(document.getElementById('cName').closest('.field'), document.getElementById('cName').value.trim().length>=3);
+  const b = check(document.getElementById('cPhone').closest('.field'), validPhone(document.getElementById('cPhone').value));
+  if (a && b){ e.target.reset(); document.getElementById('contactOk').hidden=false; }
+};
+document.getElementById('labForm').onsubmit = e => {
+  e.preventDefault();
+  const a = check(document.getElementById('labFile').closest('.field'), document.getElementById('labFile').value.trim().length>0);
+  const b = check(document.getElementById('labPhone').closest('.field'), validPhone(document.getElementById('labPhone').value));
+  if (a && b){ e.target.reset(); document.getElementById('labOk').hidden=false; }
+};
+document.querySelectorAll('.field input').forEach(i=>i.addEventListener('input',()=>i.closest('.field').classList.remove('invalid')));
+
+/* Header & active nav */
+const header = document.getElementById('header');
+const navLinks = [...document.querySelectorAll('.nav a')];
+addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 10), {passive:true});
+const secObs = new IntersectionObserver(es => es.forEach(en => {
+  if (en.isIntersecting) navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+en.target.id));
+}), {rootMargin:'-45% 0px -50% 0px'});
+['departments','doctors','insurance','patients','contact'].forEach(id => secObs.observe(document.getElementById(id)));
+
+/* Reveal on scroll */
+const revObs = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting){ en.target.classList.add('in'); revObs.unobserve(en.target); } }), {threshold:.12}) : null;
+function observeReveal(){ document.querySelectorAll('.reveal:not(.in)').forEach(el => revObs ? revObs.observe(el) : el.classList.add('in')); }
+
+applyLang();
+</script>
+</body>
+</html>
